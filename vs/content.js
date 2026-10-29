@@ -16,7 +16,22 @@ window.SITE = {
   music: [
     { title: "Гімн VS School",            artist: "VS School",     src: "audio/track-1.mp3",   time: "1:33" },
     { title: "Вишиття",                   artist: "Надія Яцента",  src: "audio/vyshyttia.mp3", time: "3:08" },
-    { title: "Журавлі (муз. О. Білоконь)", artist: "Надія Яцента",  src: "audio/zhuravli.mp3",  time: "4:00" }
+    { title: "Журавлі (муз. О. Білоконь)", artist: "Надія Яцента",  src: "audio/zhuravli.mp3",  time: "4:00" },
+    { title: "Ми з України", artist: "Анастасія Волченко", src: "audio/my-z-ukrainy.mp3", time: "4:46" },
+    { title: "Там, де світло спить", artist: "Анастасія Волченко", src: "audio/tam-de-svitlo-spyt.mp3", time: "3:00" },
+    { title: "Snowman (Sia)", artist: "Валерія Скрипниченко", src: "audio/snowman.mp3", time: "2:39" },
+    { title: "Українське сонце зійшло (Kozak System)", artist: "Валерія Скрипниченко", src: "audio/ukrainske-sontse.mp3", time: "3:15" },
+    { title: "Стожари", artist: "Максим Зарічнюк", src: "audio/stozhary.mp3", time: "3:04" },
+    { title: "Чорний ліс (Ґринджоли, С. Лазановський)", artist: "Максим Зарічнюк", src: "audio/chornyi-lis.mp3", time: "2:32" },
+    { title: "I Just Want To Say I Love You", artist: "Ніколєтта Меланчук і Марія Грицак", src: "audio/i-just-want.mp3", time: "4:21" },
+    { title: "Гуляли (Козак Сіромаха)", artist: "Мирон Іліч", src: "audio/hulialy.mp3", time: "2:36" },
+    { title: "Заспівай мені, бабусю", artist: "Роман Заяць", src: "audio/zaspivai-babusiu.mp3", time: "2:55" },
+    { title: "Борітеся — поборете (П. Табаков)", artist: "Учні 2–4 класів, 2024–2025", src: "audio/boritesia.mp3", time: "1:53" },
+    { title: "Мамо моя люба", artist: "Учні 2-х класів, 2024–2025", src: "audio/mamo-moia-liuba.mp3", time: "4:25" },
+    { title: "Моє ім'я Україна", artist: "Учні 2–7 класів", src: "audio/moie-imia-ukraina.mp3", time: "3:25" },
+    { title: "Вчителька", artist: "Учні 9–11 класів, 2025–2026", src: "audio/vchytelka.mp3", time: "3:22" },
+    { title: "Мамо", artist: "Учні 10–11 класів, 2024–2026", src: "audio/mamo.mp3", time: "4:22" },
+    { title: "Смарагдова школа", artist: "Учні 10–11 класів, 2025–2026", src: "audio/smarahdova-shkola.mp3", time: "3:05" }
   ],
   musicVolume: 0.2,   // стартова гучність: 0.2 = 20%
 
