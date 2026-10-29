@@ -57,8 +57,8 @@
   function renderCircles(f) {
     if (!chips) return;
     chips.innerHTML = '';
-    S.circles.filter(function (c) { return f === 'all' || c.group === f; }).forEach(function (c) {
-      var s = el('span', 'chip', c.name); s.dataset.g = c.group; chips.appendChild(s);
+    S.circles.filter(function (c) { return f === 'all' || (c.groups || [c.group]).indexOf(f) > -1; }).forEach(function (c) {
+      var s = el('span', 'chip', c.name); chips.appendChild(s);
     });
   }
   renderCircles('all');

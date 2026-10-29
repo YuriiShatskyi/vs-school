@@ -61,6 +61,16 @@
   }
 
   /* ---------- Лічильники ---------- */
+  /* Кількість гуртків — з vs/content.js (з правильним відмінком: 21 гурток, 42 гуртки, 27 гуртків) */
+  (function () {
+    var n = (S.circles || []).length; if (!n) return;
+    var a = n % 10, b = n % 100;
+    var one = a === 1 && b !== 11, few = a >= 2 && a <= 4 && (b < 12 || b > 14);
+    var w = one ? 'гурток і секція' : few ? 'гуртки і секції' : 'гуртків і секцій';
+    document.querySelectorAll('[data-circles]').forEach(function (e) { e.dataset.count = n; e.textContent = n; });
+    document.querySelectorAll('[data-circles-label]').forEach(function (e) { e.textContent = w + ' після уроків'; });
+    document.querySelectorAll('[data-circles-text]').forEach(function (e) { e.textContent = n + ' ' + w; });
+  })();
   var nums = document.querySelectorAll('[data-count]');
   function run(el) {
     var to = +el.dataset.count;
