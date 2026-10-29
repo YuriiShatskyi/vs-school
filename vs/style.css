@@ -244,6 +244,7 @@ header:not(.solid) .logo{opacity:0;visibility:hidden}
 .contacts small{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
 .contacts a{font:600 1.05rem/1.3 var(--head);text-decoration:none}
 .contacts a:hover{text-decoration:underline}
+.contacts .soc{display:flex;flex-wrap:wrap;gap:6px 18px}
 form{display:grid;gap:14px}
 label{display:grid;gap:6px;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
 input,select{font:500 1rem var(--body);padding:16px 18px;border:1px solid var(--line);border-radius:0;background:var(--white);color:var(--ink);width:100%;-webkit-appearance:none;appearance:none}
