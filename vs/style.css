@@ -262,6 +262,7 @@ footer .wrap{padding-block:64px 32px;display:grid;gap:48px}
 .f-brand{display:grid;gap:22px;align-content:start}
 .f-brand img{height:120px;width:auto}
 .f-brand p{font-size:1.02rem;max-width:30ch}
+.f-brand .pill{justify-self:start}
 .f-col h4{margin:0 0 14px;font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;opacity:.55;font-weight:600}
 .f-col a,.f-col p{display:block;text-decoration:none;padding:4px 0;font-size:.92rem;opacity:.9;margin:0}
 .f-col a:hover{opacity:1;text-decoration:underline}
