@@ -47,7 +47,7 @@ details .doc-body{margin-top:10px}
 
 @media (max-width:900px){
   .docs-wrap{grid-template-columns:1fr}
-  .docs-nav{position:sticky;top:64px;z-index:5;flex-direction:row;overflow-x:auto;gap:6px;margin:0 -16px;padding:10px 16px;background:var(--beige);scrollbar-width:none}
+  .docs-nav{position:sticky;top:var(--hdr-h,64px);z-index:5;flex-direction:row;overflow-x:auto;gap:6px;margin:0 -16px;padding:10px 16px;background:var(--beige);scrollbar-width:none}
   .docs-nav::-webkit-scrollbar{display:none}
   .docs-nav b{display:none}
   .docs-nav a{white-space:nowrap;border:1px solid var(--ink);padding:10px 14px;font-size:.84rem}
@@ -82,6 +82,6 @@ details .doc-body{margin-top:10px}
 .docs-home .link{box-shadow:inset 0 0 0 1px rgba(244,241,234,.55)}
 .docs-home .link:hover{background:var(--dark-fg);color:var(--ink)}
 .doc-sec{scroll-margin-top:100px}
-@media (max-width:900px){.doc-sec{scroll-margin-top:136px}}
+@media (max-width:900px){.doc-sec{scroll-margin-top:calc(var(--hdr-h,64px) + 72px)}}
 .doc-note{padding:0 22px;gap:18px}
 @media (max-width:640px){.doc-note{padding:0 16px;gap:12px}}
