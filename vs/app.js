@@ -109,14 +109,14 @@
     };
     // Герой — одразу після завантаження
     // Герой: спершу виступає логотип (CSS-анімація), потім текст
-    var introMs = window.VS_INTRO_MS || 0; // у «Стандарті» текст чекає, поки зникне заставка
+    var introMs = window.VS_INTRO_MS || 0; // текст героя чекає, поки зникне заставка
     set('.hero .cambridge', 'fade-up', 0, 700 + introMs);
     set('.hero h1', 'fade-up', 0, 850 + introMs);
     set('.hero-row', 'fade-up', 0, 1050 + introMs);
     set('.counters-in > div', 'fade-up', 100);
     set('.news-swiper, .slider-nav', 'fade-up', 0, 100);
     // Заголовки секцій
-    // у «Преміумі» заголовки розкриваються по словах (exclusive.js), тож AOS їх не чіпає
+    // заголовки розкриваються по словах (interactive.js), тож AOS їх не чіпає
     if (!window.VS_SPLIT) set('.sec-head h2, .split-title h2, .head-row h2, .faq-grid > h2, .apply-box h2', 'fade-up');
     set('.sec-head > p, .sec-head > .link, .ring, .head-row > p', 'fade-left', 0, 200);
     set('.head-row > .pill, .pre-cta', 'fade-up', 0, 300);

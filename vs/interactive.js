@@ -1,4 +1,5 @@
-/* VS School — варіант «Преміум». Підключається після premium.js і перед app.js. */
+/* VS School — інтерактив (interactive.js): плавна прокрутка, заголовки по словах, галерея, покрокова форма.
+   Підключається після effects.js і перед app.js. */
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
