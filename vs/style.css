@@ -293,8 +293,9 @@ footer .wrap{padding-block:64px 32px;display:grid;gap:48px}
   .shapes li{width:calc((100% - 12px) / 2);max-width:168px;padding:16px;font-size:.78rem}
   .pre-grid{grid-template-columns:1fr 1fr}
   .fmt .btns{flex-direction:column;align-items:stretch}
-  .fmt .btns .link{justify-content:center}
-  .fmt .btns .pill{justify-content:space-between}
+  .fmt .btns .link{justify-content:center;min-height:48px}
+  .fmt .btns .pill{justify-content:center;position:relative;min-height:48px;padding:6px 52px}
+  .fmt .btns .pill i{position:absolute;right:6px;top:50%;transform:translateY(-50%)}
   .news a{grid-template-columns:118px 1fr;min-height:0}
   .news .ph{min-height:118px}
   .news .t{padding:14px 16px;gap:8px}
