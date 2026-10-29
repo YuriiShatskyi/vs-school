@@ -2,7 +2,7 @@
    Однаковий на телефоні й комп'ютері: компактна графітова «пігулка» знизу зліва,
    над нею розгортається треклист (там же «назад / вперед» і режим); згортається в коло. */
 
-.player{position:fixed;z-index:26;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:4px;width:min(340px,calc(100vw - 96px));padding:6px;border-radius:40px;background:rgba(61,64,67,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--dark-fg);box-shadow:0 10px 30px rgba(35,38,42,.25);transition:bottom .35s,opacity .4s,transform .4s;font-family:var(--body)}
+.player{position:fixed;z-index:26;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:4px;width:min(340px,calc(100vw - 96px));padding:6px;border-radius:40px;background:rgba(61,64,67,.72);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);color:var(--dark-fg);box-shadow:0 10px 30px rgba(35,38,42,.25);transition:bottom .35s,opacity .4s,transform .4s;font-family:var(--body)}
 @media (min-width:781px){.player{left:max(20px,env(safe-area-inset-left,0px))}}
 .player.hide-intro{opacity:0;transform:translateY(16px);pointer-events:none}
 .player svg{width:18px;height:18px;display:block}
@@ -87,3 +87,7 @@
   .player.playing .pl-eq i{height:70%}
   .pl-panel{animation:none}
 }
+
+/* Плеєр не закриває рядок з копірайтом: під футером лишаємо місце під нього */
+footer .wrap{padding-bottom:100px}
+@media (max-width:780px){footer{padding-bottom:128px}}
