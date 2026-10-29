@@ -57,6 +57,15 @@
   }
   function fadeTo(d, to, sec, done) {
     d.anim = { from: d.fade, to: to, t0: Date.now(), ms: Math.max(1, sec * 1000), done: done };
+    if (d.g) {   // перехід розписуємо наперед у Web Audio — він дограє, навіть коли телефон заблоковано
+      try {
+        var n = 32, curve = new Float32Array(n), t = ctx.currentTime;
+        for (var i = 0; i < n; i++) curve[i] = out(d.fade + (to - d.fade) * i / (n - 1));
+        d.g.gain.cancelScheduledValues(t);
+        d.g.gain.setValueCurveAtTime(curve, t, Math.max(0.05, sec));
+        d.anim.sched = true;
+      } catch (e) {}
+    }
     tick();
   }
   var timer = null;
@@ -66,7 +75,7 @@
       if (!d.anim) return;
       var a = d.anim, k = Math.min(1, (now - a.t0) / a.ms);
       d.fade = a.from + (a.to - a.from) * k;
-      apply(d);
+      if (!a.sched || k >= 1) { if (a.sched && d.g) { try { d.g.gain.cancelScheduledValues(ctx.currentTime); } catch (e) {} } apply(d); }
       if (k >= 1) { d.anim = null; if (a.done) a.done(); } else busy = true;
     });
     if (busy && !timer) timer = setInterval(tick, 40);
@@ -76,12 +85,14 @@
   /* Web Audio вмикаємо лише після дії користувача (інакше AudioContext «спить»).
      Тут же «розблоковуємо» другу деку — iPhone дозволяє грати лише тим audio,
      які хоч раз запускалися від дотику. */
+  try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
   function unlock() {
     var AC = window.AudioContext || window.webkitAudioContext;
     if (!ctx && AC && location.protocol !== 'file:') {   // з диска Web Audio віддає тишу
       try {
         ctx = new AC();
         master = ctx.createGain(); master.gain.value = level; master.connect(ctx.destination);
+        ctx.onstatechange = function () { if (playing && ctx.state !== 'running' && ctx.state !== 'closed') ctx.resume().catch(function () {}); };
         decks.forEach(function (d) {
           var src = ctx.createMediaElementSource(d.el);
           d.g = ctx.createGain(); d.g.gain.value = out(d.fade);
@@ -171,7 +182,10 @@
       try {
         navigator.mediaSession.metadata = new MediaMetadata({
           title: t.title || '', artist: t.artist || 'VS School', album: 'Співає VS School',
-          artwork: [{ src: '/images/logo/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }]
+          artwork: [
+            { src: new URL('images/logo/artwork-512.png', location.href).href, sizes: '512x512', type: 'image/png' },
+            { src: new URL('images/logo/apple-touch-icon.png', location.href).href, sizes: '180x180', type: 'image/png' }
+          ]
         });
       } catch (e) {}
     }
@@ -300,13 +314,10 @@
     } catch (e) {}
   }
 
-  /* Вкладку сховали — пауза; повернулися — граємо далі */
-  var resumeOnShow = false;
+  /* Телефон заблокували або вкладку сховали — музика грає далі.
+     Якщо система «приспала» звук (дзвінок, інший плеєр), при поверненні відновлюємо. */
   document.addEventListener('visibilitychange', function () {
-    if (document.hidden) {
-      resumeOnShow = playing;
-      if (playing) { paintPlaying(false); xfading = false; decks.forEach(function (d) { d.anim = null; d.el.pause(); }); }
-    } else if (resumeOnShow) { resumeOnShow = false; active().fade = 0; resume(false); }
+    if (!document.hidden && playing && ctx && ctx.state !== 'running') ctx.resume();
   });
 
   /* Над нижньою мобільною панеллю «Подзвонити / Записатися» — піднімаємось */
