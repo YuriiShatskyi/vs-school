@@ -21,13 +21,13 @@
     }, 1400);
   }
 
-  /* ---------- Слайдер новин (усі новини з content.js) ---------- */
+  /* ---------- Слайдер новин (8 найновіших з content.js; усі — на news.html) ---------- */
   var slides = document.getElementById('news-slides');
   if (slides) {
-    S.news.forEach(function (n) {
+    S.news.slice(0, 8).forEach(function (n) {
       var s = document.createElement('div'); s.className = 'swiper-slide';
       var a = document.createElement('a'); a.className = 'slide';
-      a.href = n.link || '/news.html';
+      a.href = n.link || 'news.html';
       if (n.link) { a.target = '_blank'; a.rel = 'noopener'; }
       var ph = document.createElement('div'); ph.className = 'ph';
       if (n.img) { var i = document.createElement('img'); i.src = n.img; i.alt = n.title; i.loading = 'lazy'; i.onerror = function () { this.remove(); }; ph.appendChild(i); }

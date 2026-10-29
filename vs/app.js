@@ -24,7 +24,7 @@
   if (newsBox) {
     S.news.slice(0, 6).forEach(function (n) {
       var a = el('a');
-      a.href = n.link || '/news.html';
+      a.href = n.link || 'news.html';
       if (n.link) { a.target = '_blank'; a.rel = 'noopener'; }
       a.appendChild(photo(n.img, n.title, 'ph'));
       var t = el('div', 't');
