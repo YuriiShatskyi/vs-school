@@ -3,12 +3,9 @@
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  var lenis = null;
-
-  /* ---------- Плавна прокрутка ---------- */
-  if (window.Lenis && !reduce) {
-    lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
-    (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+  /* ---------- Плавна прокрутка (сама прокрутка створюється один раз у nav.js) ---------- */
+  var lenis = window.VS_LENIS || null;
+  if (lenis) {
     if (document.body.classList.contains('is-loading')) {
       lenis.stop();
       setTimeout(function () { lenis.start(); }, (window.VS_INTRO_MS || 0) + 50);
@@ -23,7 +20,6 @@
       lenis.scrollTo(el, { offset: id === '#top' ? 0 : -76, duration: 1.4 });
     });
   }
-  window.VS_LENIS = lenis;
 
   /* ---------- Заголовки розкриваються по словах ---------- */
   window.VS_SPLIT = !reduce;

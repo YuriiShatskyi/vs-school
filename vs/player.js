@@ -1,7 +1,8 @@
 /* VS School — фоновий аудіоплеєр «Співає VS School».
    Треки й стартова гучність — у vs/content.js (music, musicVolume).
 
-   • При кожному відкритті сайту починає з випадкової пісні.
+   • При кожному відкритті сайту починає з гімну (перша пісня у списку), далі — вперемішку.
+   • Між сторінками сайту музика не переривається (переходи без перезавантаження — vs/nav.js).
    • Старт — плавне наростання (FADE_IN), між піснями — плавний перехід без пауз (CROSSFADE):
      дві «деки» audio, поки одна затихає, інша вже звучить.
    • Режими: «підряд» (по списку по колу) і «вперемішку» (кожна пісня по разу, потім нове коло).
@@ -33,7 +34,7 @@
 
   var level = typeof S.musicVolume === 'number' ? S.musicVolume : 0.2;
   var userPaused = store.get('paused') === '1';   // людина сама вимкнула — не вмикаємо наступного разу
-  var shuffle = store.get('mode') === 'shuffle';
+  var shuffle = store.get('mode') !== 'order';   // за замовчуванням — вперемішку
   var idx = 0, playing = false, started = false, xfading = false;
   var history = [], queue = [];
   var ctx = null, master = null;
@@ -315,14 +316,15 @@
       .observe(mcta, { attributes: true, attributeFilter: ['class'] });
   }
 
-  /* ---------- Старт: випадкова пісня при кожному відкритті ---------- */
-  idx = Math.floor(Math.random() * list.length);
+  /* ---------- Старт: при кожному відкритті сайту спершу гімн (перша пісня у списку), далі — вперемішку ---------- */
+  idx = 0;
+  list.forEach(function (t, i) { if (t.first) idx = i; });
   el0.src = list[idx].src;
   decks.forEach(apply);
   paintTrack(); paintMode();
   if (shuffle) refillQueue();
   box.hidden = false;
-  var introMs = window.VS_INTRO_MS || 0;
+  var introMs = document.getElementById('intro') && !window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 1500 : 0;
   if (introMs) { box.classList.add('hide-intro'); setTimeout(function () { box.classList.remove('hide-intro'); }, introMs + 300); }
   if (!userPaused) resume(false);
 })();
