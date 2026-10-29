@@ -83,3 +83,5 @@ details .doc-body{margin-top:10px}
 .docs-home .link:hover{background:var(--dark-fg);color:var(--ink)}
 .doc-sec{scroll-margin-top:100px}
 @media (max-width:900px){.doc-sec{scroll-margin-top:136px}}
+.doc-note{padding:0 22px;gap:18px}
+@media (max-width:640px){.doc-note{padding:0 16px;gap:12px}}
