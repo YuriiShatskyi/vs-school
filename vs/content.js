@@ -28,7 +28,7 @@ window.SITE = {
     { title: "Заспівай мені, бабусю", artist: "Роман Заяць", src: "audio/zaspivai-babusiu.mp3", time: "2:55" },
     { title: "Борітеся — поборете (П. Табаков)", artist: "Учні 2–4 класів, 2024–2025", src: "audio/boritesia.mp3", time: "1:53" },
     { title: "Мамо моя люба", artist: "Учні 2-х класів, 2024–2025", src: "audio/mamo-moia-liuba.mp3", time: "4:25" },
-    { title: "Моє ім'я Україна", artist: "Учні 2–7 класів", src: "audio/moie-imia-ukraina.mp3", time: "3:25" },
+    { title: "Моє ім'я Україна", artist: "Учні 2–7 класів, 2025–2026", src: "audio/moie-imia-ukraina.mp3", time: "3:25" },
     { title: "Вчителька", artist: "Учні 9–11 класів, 2025–2026", src: "audio/vchytelka.mp3", time: "3:22" },
     { title: "Мамо", artist: "Учні 10–11 класів, 2024–2026", src: "audio/mamo.mp3", time: "4:22" },
     { title: "Смарагдова школа", artist: "Учні 10–11 класів, 2025–2026", src: "audio/smarahdova-shkola.mp3", time: "3:05" }
