@@ -26,6 +26,16 @@ window.SITE = {
      img  — фото обкладинки (папка images/news-page/, бажано квадратне)
      link — посилання на пост у Facebook/Instagram (можна "")     */
   news: [
+    { date: "2 квітня 2026", title: "Тиждень цивільного захисту: у гостях поліція", img: "images/news-page/260402police.webp", link: "https://www.facebook.com/share/p/14b4FyaxrAC/" },
+    { date: "1 квітня 2026", title: "Зустріч із практиком: як створити успішний бізнес", img: "images/news-page/260401biz.webp", link: "https://www.facebook.com/share/p/1BEY7m4aC9/" },
+    { date: "1 квітня 2026", title: "Переможці ліцейного конкурсу «Світ навколо»", img: "images/news-page/260401svit.webp", link: "https://www.facebook.com/share/p/1GS1Y5gM1u/" },
+    { date: "1 квітня 2026", title: "Підсумковий захід рефреш-студії природничо-математичного циклу", img: "images/news-page/260401refresh.webp", link: "https://www.facebook.com/share/p/1BJEU8j299/" },
+    { date: "31 березня 2026", title: "Оголошуємо набір у 1 клас і PreSchool", img: "images/news-page/260331nabir.webp", link: "https://www.facebook.com/share/p/1Dv8Ph6Q91/" },
+    { date: "16 березня 2026", title: "Екскурсія до центру мікрохірургії ока Lux Vision", img: "images/news-page/260316lux.webp", link: "https://www.facebook.com/share/p/1BMWWnHPU9/" },
+    { date: "6 березня 2026", title: "Поетичний вечір «Між зимою і весною звучить слово…»", img: "images/news-page/260306poet.webp", link: "https://www.facebook.com/share/p/1CaWYJnwbp/" },
+    { date: "4 березня 2026", title: "Карате: 6 медалей на Відкритому чемпіонаті Києва", img: "images/news-page/260304karate.webp", link: "https://www.facebook.com/share/p/1DTe5nZCJY/" },
+    { date: "23 лютого 2026", title: "День знайомства для батьків майбутніх першокласників", img: "images/news-page/260223welcome.webp", link: "https://www.facebook.com/share/p/18YpQxxn2R/" },
+    { date: "20 лютого 2026", title: "Англійська через реальне життя: розмова про ІТ-бізнес", img: "images/news-page/260220eng.webp", link: "https://www.facebook.com/share/p/18XtNJsG1W/" },
     { date: "27 січня 2026", title: "Перемога у І загальноміському етапі МАН", img: "images/news-page/260127.webp", link: "https://www.facebook.com/share/p/1DbfzEyvqg/" },
     { date: "14 січня 2026", title: "Конкурс «Різдвяне диво в стилі STEM – 2025»", img: "images/news-page/260114.webp", link: "https://www.facebook.com/share/p/1B6myqsKjh/" },
     { date: "8 січня 2026", title: "Педрада", img: "images/news-page/260108.webp", link: "https://www.facebook.com/share/p/17qZjMtK1d/" },
