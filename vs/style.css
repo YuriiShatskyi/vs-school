@@ -267,6 +267,7 @@ footer .wrap{padding-block:64px 32px;display:grid;gap:48px}
 .f-col h4{margin:0 0 14px;font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;opacity:.55;font-weight:600}
 .f-col a,.f-col p{display:block;text-decoration:none;padding:4px 0;font-size:.92rem;opacity:.9;margin:0}
 .f-col a:hover{opacity:1;text-decoration:underline}
+.f-col a.f-addr{padding:0;line-height:30px}
 .f-bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:.8rem;opacity:.6;border-top:1px solid rgba(244,241,234,.15);padding-top:22px}
 @media (max-width:960px){.f-top{grid-template-columns:1fr 1fr}}
 @media (max-width:520px){.f-top{grid-template-columns:1fr}}
