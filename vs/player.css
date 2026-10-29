@@ -89,5 +89,5 @@
 }
 
 /* Плеєр не закриває рядок з копірайтом: під футером лишаємо місце під нього */
-footer .wrap{padding-bottom:100px}
-@media (max-width:780px){footer{padding-bottom:128px}}
+@media (min-width:781px){footer .wrap{padding-bottom:100px}}
+@media (max-width:780px){footer{padding-bottom:116px}}
