@@ -90,6 +90,9 @@
 
   /* Шапка: прозора над фото, біла після прокрутки або при відкритому меню */
   var hdr = document.getElementById('hdr');
+  /* Висота шапки — для елементів, що липнуть під неї (рівні навчання, розділи документів) */
+  function hdrVar() { if (hdr) document.documentElement.style.setProperty('--hdr-h', hdr.offsetHeight + 'px'); }
+  hdrVar(); window.addEventListener('resize', hdrVar);
   var menu = document.querySelector('.menu');
   function paintHeader() {
     if (hdr) hdr.classList.toggle('solid', window.scrollY > 40 || (menu && menu.open));

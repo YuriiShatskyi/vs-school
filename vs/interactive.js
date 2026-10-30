@@ -57,23 +57,26 @@
   var vp = hs && hs.querySelector('.hs-viewport');
   var dist = 0;
   window.VS_PIN = false;
+  function hdrH() { var h = document.getElementById('hdr'); return h ? h.offsetHeight : 0; }
   function setupPin() {
     if (!hs) return;
     var on = window.innerWidth >= 1000 && !reduce;
     hs.classList.toggle('pinned', on);
+    /* На низьких екранах заголовок і картки не влазять під шапку — тоді без «завмирання», звичайна горизонтальна прокрутка */
+    if (on) { var st = hs.querySelector('.hs-sticky'); if (st && st.scrollHeight > st.clientHeight + 2) { on = false; hs.classList.remove('pinned'); } }
     window.VS_PIN = on;
     if (!on) { hs.style.height = ''; track.style.transform = ''; return; }
     var cs = getComputedStyle(vp);
     var pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
     dist = Math.max(0, track.scrollWidth + pad - vp.clientWidth);
-    hs.style.height = (window.innerHeight + dist) + 'px';
+    hs.style.height = (window.innerHeight - hdrH() + dist) + 'px';
     movePin();
     if (window.VS_LENIS) window.VS_LENIS.resize();
   }
   function movePin() {
     if (!window.VS_PIN) return;
-    var top = hs.getBoundingClientRect().top;
-    var p = Math.min(1, Math.max(0, -top / (hs.offsetHeight - window.innerHeight || 1)));
+    var top = hs.getBoundingClientRect().top - hdrH();
+    var p = Math.min(1, Math.max(0, -top / (hs.offsetHeight - (window.innerHeight - hdrH()) || 1)));
     track.style.transform = 'translate3d(' + (-p * dist).toFixed(1) + 'px,0,0)';
   }
   setupPin();
