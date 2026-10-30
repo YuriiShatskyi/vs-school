@@ -58,25 +58,35 @@
   var dist = 0;
   window.VS_PIN = false;
   function hdrH() { var h = document.getElementById('hdr'); return h ? h.offsetHeight : 0; }
+  /* Заголовок блоку: якщо разом з картками не влазить під шапку — він прокручується звичайно,
+     а «завмирають» лише картки */
+  var sticky = hs && hs.querySelector('.hs-sticky');
+  var head = sticky && sticky.querySelector('.wrap');
+  function headOut(out) {
+    if (!head) return;
+    if (out && head.parentNode === sticky) { hs.insertBefore(head, sticky); hs.classList.add('pin-compact'); }
+    if (!out && head.parentNode !== sticky) { sticky.insertBefore(head, sticky.firstChild); hs.classList.remove('pin-compact'); }
+  }
+  function headH() { return head && head.parentNode !== sticky ? head.offsetHeight : 0; }
   function setupPin() {
     if (!hs) return;
     var on = window.innerWidth >= 1000 && !reduce;
     hs.classList.toggle('pinned', on);
-    /* На низьких екранах заголовок і картки не влазять під шапку — тоді без «завмирання», звичайна горизонтальна прокрутка */
-    if (on) { var st = hs.querySelector('.hs-sticky'); if (st && st.scrollHeight > st.clientHeight + 2) { on = false; hs.classList.remove('pinned'); } }
+    headOut(false);
+    if (on && sticky.scrollHeight > sticky.clientHeight + 2) headOut(true);
     window.VS_PIN = on;
     if (!on) { hs.style.height = ''; track.style.transform = ''; return; }
     var cs = getComputedStyle(vp);
     var pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
     dist = Math.max(0, track.scrollWidth + pad - vp.clientWidth);
-    hs.style.height = (window.innerHeight - hdrH() + dist) + 'px';
+    hs.style.height = (headH() + window.innerHeight - hdrH() + dist) + 'px';
     movePin();
     if (window.VS_LENIS) window.VS_LENIS.resize();
   }
   function movePin() {
     if (!window.VS_PIN) return;
-    var top = hs.getBoundingClientRect().top - hdrH();
-    var p = Math.min(1, Math.max(0, -top / (hs.offsetHeight - (window.innerHeight - hdrH()) || 1)));
+    var top = hs.getBoundingClientRect().top + headH() - hdrH();
+    var p = Math.min(1, Math.max(0, -top / (dist || 1)));
     track.style.transform = 'translate3d(' + (-p * dist).toFixed(1) + 'px,0,0)';
   }
   setupPin();
