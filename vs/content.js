@@ -366,6 +366,7 @@ window.SITE = {
       { name: "", role: "", photo: "images/team/new-7088.jpg" },
       { name: "", role: "", photo: "images/team/new-7102.jpg" },
       { name: "", role: "", photo: "images/team/new-7103.jpg" },
+      { name: "", role: "", photo: "images/team/new-7107.jpg" },
       { name: "", role: "", photo: "images/team/new-7144.jpg" },
       { name: "", role: "", photo: "images/team/new-7225.jpg" },
       { name: "", role: "", photo: "images/team/new-7231.jpg" },

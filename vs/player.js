@@ -178,23 +178,28 @@
       li.classList.toggle('on', i === idx);
       li.querySelector('button').setAttribute('aria-current', i === idx ? 'true' : 'false');
     });
-    if ('mediaSession' in navigator) {
-      try {
-        navigator.mediaSession.metadata = new MediaMetadata({
-          title: t.title || '', artist: t.artist || 'VS School', album: 'Співає VS School',
-          artwork: [
-            { src: new URL('images/logo/artwork-512.png', location.href).href, sizes: '512x512', type: 'image/png' },
-            { src: new URL('images/logo/apple-touch-icon.png', location.href).href, sizes: '180x180', type: 'image/png' }
-          ]
-        });
-      } catch (e) {}
-    }
+    setMeta();
+  }
+  /* Екран блокування / центр керування: назва пісні й логотип ліцею */
+  var ART = [96, 128, 192, 256, 384, 512].map(function (n) {
+    return { src: new URL('images/logo/artwork-' + n + '.png', document.baseURI).href, sizes: n + 'x' + n, type: 'image/png' };
+  });
+  function setMeta() {
+    if (!('mediaSession' in navigator) || !window.MediaMetadata) return;
+    var t = list[idx] || {};
+    try {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: t.title || 'Співає VS School', artist: t.artist || 'VS School', album: 'Співає VS School', artwork: ART
+      });
+      navigator.mediaSession.playbackState = playing ? 'playing' : 'paused';
+    } catch (e) {}
   }
   function paintPlaying(on) {
     playing = on;
     box.classList.toggle('playing', on);
     if (on) box.classList.remove('wait');
     btnPlay.setAttribute('aria-label', on ? 'Пауза' : 'Увімкнути музику');
+    try { if ('mediaSession' in navigator) navigator.mediaSession.playbackState = on ? 'playing' : 'paused'; } catch (e) {}
   }
   function fmt(s) { s = Math.max(0, Math.floor(s || 0)); return Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); }
 
@@ -251,7 +256,7 @@
   }
 
   decks.forEach(function (d) {
-    d.el.addEventListener('playing', function () { if (d === active()) disarm(); });
+    d.el.addEventListener('playing', function () { if (d === active()) { disarm(); setMeta(); } });
     d.el.addEventListener('timeupdate', function () {
       if (d !== active()) return;
       var dur = d.el.duration || 0, t = d.el.currentTime;
@@ -318,6 +323,7 @@
      Якщо система «приспала» звук (дзвінок, інший плеєр), при поверненні відновлюємо. */
   document.addEventListener('visibilitychange', function () {
     if (!document.hidden && playing && ctx && ctx.state !== 'running') ctx.resume();
+    if (document.hidden && playing) setMeta();   // перед блокуванням ще раз віддаємо логотип і назву
   });
 
   /* Над нижньою мобільною панеллю «Подзвонити / Записатися» — піднімаємось */
