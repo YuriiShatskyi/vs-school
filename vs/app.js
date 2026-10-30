@@ -75,6 +75,12 @@
     a.addEventListener('click', function () { a.closest('details').open = false; });
   });
 
+  /* Мобільне меню закривається від дотику будь-де поза ним */
+  document.addEventListener('click', function (e) {
+    var m = document.querySelector('details.menu[open]');
+    if (m && !m.contains(e.target)) m.open = false;
+  });
+
   /* Кнопка «Записати дитину» підставляє клас у форму */
   document.querySelectorAll('[data-grade]').forEach(function (a) {
     a.addEventListener('click', function () {
