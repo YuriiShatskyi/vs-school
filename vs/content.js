@@ -336,11 +336,9 @@ window.SITE = {
     ] },
     { dept: "Кафедра вчителів англійської мови", people: [
       { name: "Підлеснюк Іванна Василівна", role: "Вчитель англійської мови, керівниця кафедри", photo: "images/team/pidlesniuk.jpg" },
-      { name: "Ілліч Тетяна Романівна", role: "Вчитель англійської мови", photo: "images/team/illich.jpg" },
       { name: "Івонюк Вікторія Петрівна", role: "Вчитель англійської мови", photo: "images/team/ivoniuk.jpg" }
     ] },
     { dept: "Ментори", people: [
-      { name: "Федорняк Іванна Михайлівна", role: "Ментор", photo: "images/team/fedorniak.jpg" },
       { name: "Бойчук Христина Романівна", role: "Ментор", photo: "images/team/boichuk.jpg" },
       { name: "Білоус Любов Миколаївна", role: "Ментор", photo: "images/team/bilous.jpg" },
       { name: "Дрінь Наталія Ярославівна", role: "Ментор", photo: "images/team/drin.jpg" },
@@ -356,8 +354,7 @@ window.SITE = {
       { name: "Королевич Михайло Романович", role: "Шеф-повар", photo: "images/team/korolevych.jpg" },
       { name: "Амброзяк Галина Дмитрівна", role: "Працівник кухні", photo: "images/team/ambroziak.jpg" },
       { name: "Андрейчук Людмила Василівна", role: "Працівник кухні", photo: "images/team/andreichuk.jpg" },
-      { name: "Федорів Катерина Василівна", role: "Працівник кухні", photo: "images/team/fedoriv.jpg" },
-      { name: "Чорній Діана Ігорівна", role: "Адміністратор", photo: "images/team/chornii.jpg" }
+      { name: "Федорів Катерина Василівна", role: "Працівник кухні", photo: "images/team/fedoriv.jpg" }
     ] },
     { dept: "Інші", people: [
       { name: "", role: "", photo: "images/team/new-7031.jpg" },
@@ -368,6 +365,7 @@ window.SITE = {
       { name: "", role: "", photo: "images/team/new-7077.jpg" },
       { name: "", role: "", photo: "images/team/new-7088.jpg" },
       { name: "", role: "", photo: "images/team/new-7102.jpg" },
+      { name: "", role: "", photo: "images/team/new-7103.jpg" },
       { name: "", role: "", photo: "images/team/new-7144.jpg" },
       { name: "", role: "", photo: "images/team/new-7225.jpg" },
       { name: "", role: "", photo: "images/team/new-7231.jpg" },
