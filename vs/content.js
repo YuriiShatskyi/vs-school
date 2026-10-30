@@ -357,18 +357,13 @@ window.SITE = {
       { name: "Федорів Катерина Василівна", role: "Працівник кухні", photo: "images/team/fedoriv.jpg" }
     ] },
     { dept: "Інші", people: [
-      { name: "", role: "", photo: "images/team/new-7031.jpg" },
-      { name: "", role: "", photo: "images/team/new-7034.jpg" },
       { name: "", role: "", photo: "images/team/new-7046.jpg" },
       { name: "", role: "", photo: "images/team/new-7067.jpg" },
       { name: "", role: "", photo: "images/team/new-7069.jpg" },
-      { name: "", role: "", photo: "images/team/new-7077.jpg" },
       { name: "", role: "", photo: "images/team/new-7088.jpg" },
       { name: "", role: "", photo: "images/team/new-7102.jpg" },
       { name: "", role: "", photo: "images/team/new-7103.jpg" },
       { name: "", role: "", photo: "images/team/new-7107.jpg" },
-      { name: "", role: "", photo: "images/team/new-7144.jpg" },
-      { name: "", role: "", photo: "images/team/new-7225.jpg" },
       { name: "", role: "", photo: "images/team/new-7231.jpg" },
       { name: "", role: "", photo: "images/team/new-7238.jpg" }
     ] }
