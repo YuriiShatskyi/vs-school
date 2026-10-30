@@ -48,6 +48,22 @@
     return true;
   }
 
+  /* Прокрутка до розділу іншої сторінки. Поки вантажаться фото й анімації, сторінка «росте»,
+     тому кілька разів перевіряємо, що розділ справді під шапкою, і підправляємо. */
+  function settle(el) {
+    var tries = 0, lenis = window.VS_LENIS;
+    (function fix() {
+      var top = el.getBoundingClientRect().top - 76;
+      if (Math.abs(top) > 4) {
+        if (lenis) lenis.scrollTo(window.scrollY + top, { immediate: true, force: true });
+        else window.scrollTo(0, window.scrollY + top);
+      }
+      if (++tries < 12) setTimeout(fix, tries < 4 ? 120 : 300);
+    })();
+    var stop = function () { tries = 99; };   // людина сама почала гортати — не заважаємо
+    ['wheel', 'touchstart', 'keydown'].forEach(function (t) { window.addEventListener(t, stop, { once: true, passive: true }); });
+  }
+
   var busy = false, shown = location.pathname;
   function go(url, push) {
     if (busy) return; busy = true;
@@ -105,7 +121,7 @@
         if (window.AOS && AOS.refreshHard) AOS.refreshHard();
         if (hash) {
           var el = document.querySelector(hash);
-          if (el) setTimeout(function () { lenis ? lenis.scrollTo(el, { offset: -76, duration: 1.2 }) : el.scrollIntoView(); }, 150);
+          if (el) settle(el);
         }
         return;
       }
@@ -132,4 +148,7 @@
   });
   tracked.pop();   // і повернення «назад» — теж постійне
   history.replaceState({ vs: 1 }, '', location.href);
+  if (location.hash) window.addEventListener('load', function () {
+    var el = document.querySelector(location.hash); if (el) settle(el);
+  });
 })();
