@@ -316,3 +316,7 @@ footer .wrap{padding-block:64px 32px;display:grid;gap:48px}
 .team-all-foot .link{border:0;background:transparent;cursor:pointer;color:inherit}
 @media (max-width:640px){.staff-grid{grid-template-columns:1fr 1fr;gap:10px}.staff-grid .person div:last-child{padding:10px 12px 14px}.staff-grid .person b{font-size:.74rem}.staff-grid .person span{font-size:.72rem}.staff-filters{flex-wrap:nowrap;overflow-x:auto;margin-inline:-16px;padding-inline:16px;scrollbar-width:none}.staff-filters::-webkit-scrollbar{display:none}.staff-filters button{white-space:nowrap}}
 .team[hidden]{display:none}
+
+/* Команда тимчасово прихована: лишається лише заголовок (клас team-paused на секції #team) */
+.team-paused #team-list,.team-paused #team-toggle,.team-paused #team-all{display:none!important}
+.team-paused .sec-head{margin-bottom:0}
