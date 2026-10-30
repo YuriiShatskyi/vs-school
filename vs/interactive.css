@@ -33,12 +33,22 @@ html.lenis,html.lenis body{height:auto}
 .hs-track .fmt-intro h3{font-size:clamp(1.6rem,2.8vw,2.4rem)}
 .fmt-intro p{color:rgba(244,241,234,.75);font-size:1rem;max-width:34ch}
 .hs-track .fmt h3{font-size:clamp(1.5rem,2.6vw,2.3rem)}
-@media (min-width:1000px){
-  .hscroll.pinned .hs-sticky{position:sticky;top:var(--hdr-h,76px);height:calc(100vh - var(--hdr-h,76px));display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding-block:clamp(24px,5vh,64px)}
-  .hscroll.pinned .sec-head{margin-bottom:clamp(20px,3.5vh,44px)}
-  .hscroll.pinned .hs-track .fmt{min-height:min(460px,calc(100vh - var(--hdr-h,76px) - 330px))}
-  .hscroll.pinned .hs-viewport{overflow:visible;padding-inline:max(20px,calc((100vw - 1320px) / 2 + 20px))}
-  .hscroll.pinned .hs-track{will-change:transform}
+/* «Завмирання» працює і на телефоні, і на комп'ютері */
+.hscroll.pinned .hs-sticky{position:sticky;top:var(--hdr-h,76px);height:calc(100vh - var(--hdr-h,76px));height:calc(100svh - var(--hdr-h,76px));display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding-block:clamp(24px,5vh,64px)}
+.hscroll.pinned .sec-head{margin-bottom:clamp(20px,3.5vh,44px)}
+.hscroll.pinned .hs-track .fmt{min-height:min(460px,calc(100vh - var(--hdr-h,76px) - 330px))}
+.hscroll.pinned .hs-viewport{overflow:visible;scroll-snap-type:none;padding-inline:max(20px,calc((100vw - 1320px) / 2 + 20px))}
+.hscroll.pinned .hs-track{will-change:transform}
+@media (max-width:999px){
+  /* телефон: під картками — нижня панель «Подзвонити / Записатися», картки трохи вище й компактніші */
+  .hscroll.pinned .hs-sticky{padding-block:16px 92px;justify-content:center}
+  .hscroll.pinned .hs-track .fmt{min-height:0;width:min(84vw,420px)}
+  .hscroll.pinned .hs-track .fmt-intro{width:min(84vw,420px)}
+  .hscroll.pinned.pin-compact>.wrap{padding-top:56px}
+  .hscroll.pinned .fmt{gap:10px;padding:20px}
+  .hscroll.pinned .fmt li{padding:10px 0}
+  .hscroll.pinned .fmt .btns{padding-top:12px;gap:8px}
+}
 }
 
 /* Вступ: картки складаються в стопку під час прокрутки */

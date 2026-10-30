@@ -70,15 +70,20 @@
   function headH() { return head && head.parentNode !== sticky ? head.offsetHeight : 0; }
   function setupPin() {
     if (!hs) return;
-    var on = window.innerWidth >= 1000 && !reduce;
+    var on = !reduce;
     hs.classList.toggle('pinned', on);
     headOut(false);
     if (on && sticky.scrollHeight > sticky.clientHeight + 2) headOut(true);
     window.VS_PIN = on;
     if (!on) { hs.style.height = ''; track.style.transform = ''; return; }
+    /* якщо картки однаково вищі за вільне місце (маленький телефон) — трохи зменшуємо їх цілком */
+    track.style.zoom = '';
+    var sp = getComputedStyle(sticky), free = sticky.clientHeight - parseFloat(sp.paddingTop) - parseFloat(sp.paddingBottom) - (head && head.parentNode === sticky ? head.offsetHeight : 0);
+    if (track.offsetHeight > free && free > 200) track.style.zoom = Math.max(0.7, free / track.offsetHeight).toFixed(3);
     var cs = getComputedStyle(vp);
     var pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
-    dist = Math.max(0, track.scrollWidth + pad - vp.clientWidth);
+    var z = parseFloat(track.style.zoom) || 1;
+    dist = Math.max(0, track.scrollWidth * z + pad - vp.clientWidth);
     hs.style.height = (headH() + window.innerHeight - hdrH() + dist) + 'px';
     movePin();
     if (window.VS_LENIS) window.VS_LENIS.resize();
@@ -87,7 +92,7 @@
     if (!window.VS_PIN) return;
     var top = hs.getBoundingClientRect().top + headH() - hdrH();
     var p = Math.min(1, Math.max(0, -top / (dist || 1)));
-    track.style.transform = 'translate3d(' + (-p * dist).toFixed(1) + 'px,0,0)';
+    track.style.transform = 'translate3d(' + (-p * dist / (parseFloat(track.style.zoom) || 1)).toFixed(1) + 'px,0,0)';
   }
   setupPin();
   window.addEventListener('resize', setupPin);
