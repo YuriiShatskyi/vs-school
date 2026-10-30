@@ -302,4 +302,3 @@ footer .wrap{padding-block:64px 32px;display:grid;gap:48px}
   .f-top{grid-template-columns:1fr 1fr;gap:28px 20px}
   .f-brand,.f-top>div:last-child{grid-column:1/-1}
 }
-#team{padding-top:clamp(32px,4vw,56px)}
