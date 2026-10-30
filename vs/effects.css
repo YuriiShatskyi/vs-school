@@ -91,3 +91,8 @@ body.is-loading .hero-logo,body.is-loading .hero>img{animation-play-state:paused
 .news-swiper .ph img{position:absolute;top:18px;bottom:26px;left:0;right:0;margin:0 auto;width:auto;height:calc(100% - 44px);max-width:calc(100% - 36px);aspect-ratio:1/1;object-fit:cover;object-position:50% 30%;filter:saturate(.72) contrast(.97) brightness(1.03);box-shadow:0 8px 22px rgba(35,38,42,.14);transition:filter .5s ease}
 .news-swiper .slide:hover .ph img{transform:none;filter:none}
 .news-swiper .slide:hover .ph::before{opacity:0}
+
+/* Стрілки й крапки слайдера новин — завжди разом по центру (Safari інколи бере позицію крапок зі стилів Swiper) */
+.slider-nav{display:flex;justify-content:center;align-items:center}
+.slider-nav .swiper-pagination.swiper-pagination-bullets,
+.slider-nav .swiper-pagination.swiper-pagination-horizontal{position:static!important;left:auto!important;right:auto!important;bottom:auto!important;top:auto!important;width:auto!important;transform:none!important;margin:0;flex:none;display:flex;align-items:center;justify-content:center}
