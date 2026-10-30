@@ -274,9 +274,104 @@ window.SITE = {
 
   /* ---------- КОМАНДА (адміністрація на головній) ---------- */
   team: [
-    { name: "Клімковська Світлана Іванівна", role: "Директор",                                       photo: "images/team/klimk.jpg" },
+    { name: "Клімковська Світлана Іванівна", role: "Директор",                                       photo: "images/team/klimkovska.jpg" },
     { name: "Кузенко Галина Романівна",      role: "Заступник директора, вчитель початкових класів", photo: "images/team/kuzenko.jpg" },
     { name: "Кальна Наталія Михайлівна",     role: "Заступник директора, вчитель початкових класів", photo: "images/team/kalna.jpg" },
     { name: "Яцента Надія Петрівна",         role: "Заступник директора, вчитель географії",          photo: "images/team/yacenta.jpg" }
+  ],
+
+  /* ---------- УСЯ КОМАНДА (розгортається на головній кнопкою «Уся команда») ----------
+     Кафедри йдуть у такому порядку, як тут. Людина може бути в кількох кафедрах.
+     name/role можна лишити "" — тоді під фото нічого не пишеться.
+     Фото — у папці images/team/ (800×1000, обробка як у решти). */
+  staff: [
+    { dept: "Адміністрація", people: [
+      { name: "Клімковська Світлана Іванівна", role: "Директор", photo: "images/team/klimkovska.jpg" },
+      { name: "Кузенко Галина Романівна", role: "Заступник директора, вчитель початкових класів", photo: "images/team/kuzenko.jpg" },
+      { name: "Кальна Наталія Михайлівна", role: "Заступник директора, вчитель початкових класів", photo: "images/team/kalna.jpg" },
+      { name: "Яцента Надія Петрівна", role: "Заступник директора, вчитель географії", photo: "images/team/yacenta.jpg" }
+    ] },
+    { dept: "Бухгалтерія", people: [
+      { name: "Гладинюк Ірина Любомирівна", role: "Бухгалтер", photo: "images/team/hladyniuk.jpg" },
+      { name: "Сухарська Оксана Михайлівна", role: "Бухгалтер", photo: "images/team/sukharska.jpg" }
+    ] },
+    { dept: "Кафедра класних керівників", people: [
+      { name: "Нич Тетяна Романівна", role: "Вчитель початкових класів", photo: "images/team/nych.jpg" },
+      { name: "Береснєва Ольга Василівна", role: "Вчитель початкових класів", photo: "images/team/beresnieva.jpg" },
+      { name: "Єфремова Тетяна Анатоліївна", role: "Вчитель початкових класів", photo: "images/team/iefremova.jpg" },
+      { name: "Кальна Наталія Михайлівна", role: "Заступник директора, вчитель початкових класів", photo: "images/team/kalna.jpg" },
+      { name: "Семків Ірина Вікторівна", role: "Вчитель початкових класів", photo: "images/team/semkiv.jpg" },
+      { name: "Кузенко Галина Романівна", role: "Заступник директора, вчитель початкових класів", photo: "images/team/kuzenko.jpg" },
+      { name: "Сенюк Надія Михайлівна", role: "Вчитель біології та хімії", photo: "images/team/seniuk.jpg" },
+      { name: "Стецюк Тетяна Михайлівна", role: "", photo: "images/team/stetsiuk.jpg" },
+      { name: "Яцента Надія Петрівна", role: "Заступник директора, вчитель географії", photo: "images/team/yacenta.jpg" },
+      { name: "Журавська Лілія Миколаївна", role: "Психолог та класний керівник", photo: "images/team/zhuravska.jpg" },
+      { name: "Підлеснюк Іванна Василівна", role: "Вчитель англійської мови", photo: "images/team/pidlesniuk.jpg" }
+    ] },
+    { dept: "Кафедра вчителів початкових класів", people: [
+      { name: "Нич Тетяна Романівна", role: "Вчитель початкових класів, керівниця кафедри", photo: "images/team/nych.jpg" },
+      { name: "Береснєва Ольга Василівна", role: "Вчитель початкових класів", photo: "images/team/beresnieva.jpg" },
+      { name: "Єфремова Тетяна Анатоліївна", role: "Вчитель початкових класів", photo: "images/team/iefremova.jpg" },
+      { name: "Кальна Наталія Михайлівна", role: "Заступник директора, вчитель початкових класів", photo: "images/team/kalna.jpg" },
+      { name: "Семків Ірина Вікторівна", role: "Вчитель початкових класів", photo: "images/team/semkiv.jpg" },
+      { name: "Кузенко Галина Романівна", role: "Заступник директора, вчитель початкових класів", photo: "images/team/kuzenko.jpg" }
+    ] },
+    { dept: "Кафедра вчителів природничо-математичного циклу", people: [
+      { name: "Білінкевич Назар Олексійович", role: "Вчитель математики, керівник кафедри", photo: "images/team/bilinkevych.jpg" },
+      { name: "Дмитрієва Наталя Миколаївна", role: "Вчитель математики", photo: "images/team/dmytriieva.jpg" },
+      { name: "Шацький Юрій Іванович", role: "Вчитель інформатики", photo: "images/team/shatskyi.jpg" },
+      { name: "Андрухів Марія Павлівна", role: "Вчитель фізики", photo: "images/team/andrukhiv.jpg" },
+      { name: "Сенюк Надія Михайлівна", role: "Вчитель біології та хімії", photo: "images/team/seniuk.jpg" },
+      { name: "Яцента Надія Петрівна", role: "Заступник директора, вчитель географії", photo: "images/team/yacenta.jpg" }
+    ] },
+    { dept: "Кафедра суспільно-гуманітарного циклу", people: [
+      { name: "Стецюк Тетяна Михайлівна", role: "Вчитель української мови та літератури, керівниця кафедри", photo: "images/team/stetsiuk.jpg" },
+      { name: "Сисак Марія Миколаївна", role: "Вчитель основ християнської етики, фінансової грамотності", photo: "images/team/sysak.jpg" },
+      { name: "Клімковський Сергій Романович", role: "Вчитель історії", photo: "images/team/klimkovskyi.jpg" }
+    ] },
+    { dept: "Кафедра спортивного та художньо-естетичного циклу", people: [
+      { name: "Табачнюк Назарій Мирославович", role: "Вчитель фізичної культури, керівник кафедри", photo: "images/team/tabachniuk.jpg" },
+      { name: "Вацеба Ірина Миколаївна", role: "Вчитель хореографії", photo: "images/team/vatseba.jpg" },
+      { name: "Дідур Галина Василівна", role: "Вчитель образотворчого мистецтва", photo: "images/team/didur.jpg" }
+    ] },
+    { dept: "Кафедра вчителів англійської мови", people: [
+      { name: "Підлеснюк Іванна Василівна", role: "Вчитель англійської мови, керівниця кафедри", photo: "images/team/pidlesniuk.jpg" },
+      { name: "Ілліч Тетяна Романівна", role: "Вчитель англійської мови", photo: "images/team/illich.jpg" },
+      { name: "Івонюк Вікторія Петрівна", role: "Вчитель англійської мови", photo: "images/team/ivoniuk.jpg" }
+    ] },
+    { dept: "Ментори", people: [
+      { name: "Федорняк Іванна Михайлівна", role: "Ментор", photo: "images/team/fedorniak.jpg" },
+      { name: "Бойчук Христина Романівна", role: "Ментор", photo: "images/team/boichuk.jpg" },
+      { name: "Білоус Любов Миколаївна", role: "Ментор", photo: "images/team/bilous.jpg" },
+      { name: "Дрінь Наталія Ярославівна", role: "Ментор", photo: "images/team/drin.jpg" },
+      { name: "Гайда Іванна Василівна", role: "Ментор", photo: "images/team/haida.jpg" },
+      { name: "Варунків Аліна Григорівна", role: "Ментор", photo: "images/team/varunkiv.jpg" }
+    ] },
+    { dept: "PreSchool", people: [
+      { name: "Бігун Мар'яна Ярославівна", role: "Вихователь", photo: "images/team/bihun.jpg" },
+      { name: "Дирів Аліна Романівна", role: "Вихователь", photo: "images/team/dyriv.jpg" },
+      { name: "Сова Діана Михайлівна", role: "Вчитель-логопед", photo: "images/team/sova.jpg" }
+    ] },
+    { dept: "Кухня", people: [
+      { name: "Королевич Михайло Романович", role: "Шеф-повар", photo: "images/team/korolevych.jpg" },
+      { name: "Амброзяк Галина Дмитрівна", role: "Працівник кухні", photo: "images/team/ambroziak.jpg" },
+      { name: "Андрейчук Людмила Василівна", role: "Працівник кухні", photo: "images/team/andreichuk.jpg" },
+      { name: "Федорів Катерина Василівна", role: "Працівник кухні", photo: "images/team/fedoriv.jpg" },
+      { name: "Чорній Діана Ігорівна", role: "Адміністратор", photo: "images/team/chornii.jpg" }
+    ] },
+    { dept: "Інші", people: [
+      { name: "", role: "", photo: "images/team/new-7031.jpg" },
+      { name: "", role: "", photo: "images/team/new-7034.jpg" },
+      { name: "", role: "", photo: "images/team/new-7046.jpg" },
+      { name: "", role: "", photo: "images/team/new-7067.jpg" },
+      { name: "", role: "", photo: "images/team/new-7069.jpg" },
+      { name: "", role: "", photo: "images/team/new-7077.jpg" },
+      { name: "", role: "", photo: "images/team/new-7088.jpg" },
+      { name: "", role: "", photo: "images/team/new-7102.jpg" },
+      { name: "", role: "", photo: "images/team/new-7144.jpg" },
+      { name: "", role: "", photo: "images/team/new-7225.jpg" },
+      { name: "", role: "", photo: "images/team/new-7231.jpg" },
+      { name: "", role: "", photo: "images/team/new-7238.jpg" }
+    ] }
   ]
 };

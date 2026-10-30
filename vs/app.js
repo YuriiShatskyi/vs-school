@@ -52,6 +52,53 @@
     });
   }
 
+  /* Уся команда: розгортається під керівництвом, з фільтром за кафедрами */
+  var allBox = document.getElementById('team-all'), tgl = document.getElementById('team-toggle');
+  if (allBox && tgl && S.staff) {
+    var grid = document.getElementById('staff-grid'), fbox = document.getElementById('staff-filters');
+    var card = function (p) {
+      var d = el('div', 'person' + (p.name ? '' : ' no-text'));
+      var ava = photo(p.photo, p.name || 'Працівник ліцею', 'ava');
+      d.appendChild(ava);
+      if (p.name) {
+        var t = el('div');
+        t.appendChild(el('b', null, p.name));
+        if (p.role) t.appendChild(el('span', null, p.role));
+        d.appendChild(t);
+      }
+      return d;
+    };
+    var showDept = function (i) {
+      grid.innerHTML = '';
+      var list;
+      if (i < 0) {   // «Усі» — кожна людина один раз
+        var seen = {}; list = [];
+        S.staff.forEach(function (g) { g.people.forEach(function (p) { var k = p.photo || p.name; if (!(k in seen)) { seen[k] = list.length; list.push(p); } else if (!list[seen[k]].role && p.role) list[seen[k]] = p; }); });
+      } else list = S.staff[i].people;
+      list.forEach(function (p) { grid.appendChild(card(p)); });
+      Array.prototype.forEach.call(fbox.children, function (b) { b.setAttribute('aria-pressed', String(+b.dataset.i === i)); });
+    };
+    [{ dept: 'Усі' }].concat(S.staff).forEach(function (g, k) {
+      var b = el('button', null, g.dept); b.type = 'button'; b.dataset.i = k - 1;
+      b.addEventListener('click', function () { showDept(k - 1); });
+      fbox.appendChild(b);
+    });
+    var setOpen = function (open) {
+      allBox.hidden = !open;
+      tgl.setAttribute('aria-expanded', String(open));
+      tgl.querySelector('span').textContent = open ? 'Згорнути' : 'Уся команда';
+      tgl.querySelector('svg').style.transform = open ? 'rotate(-45deg)' : 'rotate(135deg)';
+      if (open && !grid.children.length) showDept(-1);
+      if (window.VS_LENIS) window.VS_LENIS.resize();
+      if (!open) {
+        var sec = document.getElementById('team');
+        if (sec.getBoundingClientRect().top < 0) (window.VS_LENIS ? window.VS_LENIS.scrollTo(sec, { offset: -76, immediate: true }) : sec.scrollIntoView());
+      }
+    };
+    tgl.addEventListener('click', function () { setOpen(allBox.hidden); });
+    document.getElementById('team-close').addEventListener('click', function () { setOpen(false); });
+  }
+
   /* Гуртки з фільтром */
   var chips = document.getElementById('chips');
   function renderCircles(f) {
@@ -62,7 +109,7 @@
     });
   }
   renderCircles('all');
-  var btns = document.querySelectorAll('.filters button');
+  var btns = document.querySelectorAll('#circles .filters button');
   btns.forEach(function (b) {
     b.addEventListener('click', function () {
       btns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
