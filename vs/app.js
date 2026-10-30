@@ -85,6 +85,7 @@
     });
     var setOpen = function (open) {
       allBox.hidden = !open;
+      var top4 = document.getElementById('team-list'); if (top4) top4.hidden = open;   // керівництво вже є у повному списку
       tgl.setAttribute('aria-expanded', String(open));
       tgl.querySelector('span').textContent = open ? 'Згорнути' : 'Уся команда';
       tgl.querySelector('svg').style.transform = open ? 'rotate(-45deg)' : 'rotate(135deg)';
