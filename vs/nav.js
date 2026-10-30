@@ -55,7 +55,7 @@
     (function fix() {
       var top = el.getBoundingClientRect().top - 76;
       if (Math.abs(top) > 4) {
-        if (lenis) lenis.scrollTo(window.scrollY + top, { immediate: true, force: true });
+        if (lenis) { lenis.resize(); lenis.scrollTo(window.scrollY + top, { immediate: true, force: true }); }
         else window.scrollTo(0, window.scrollY + top);
       }
       if (++tries < 12) setTimeout(fix, tries < 4 ? 120 : 300);
@@ -119,6 +119,7 @@
       if (!s) {
         tracking = false;
         if (window.AOS && AOS.refreshHard) AOS.refreshHard();
+        if (lenis) lenis.resize();   // нова сторінка іншої висоти — прокрутка має про це знати
         if (hash) {
           var el = document.querySelector(hash);
           if (el) settle(el);

@@ -68,6 +68,7 @@
     dist = Math.max(0, track.scrollWidth + pad - vp.clientWidth);
     hs.style.height = (window.innerHeight + dist) + 'px';
     movePin();
+    if (window.VS_LENIS) window.VS_LENIS.resize();
   }
   function movePin() {
     if (!window.VS_PIN) return;
