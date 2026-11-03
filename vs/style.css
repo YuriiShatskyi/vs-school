@@ -339,3 +339,5 @@ html.dv-on,html.dv-on body{overflow:hidden}
 /* Без синьої рамки після кліку мишкою/пальцем (для клавіатури рамка лишається) */
 .doc-btn:focus:not(:focus-visible),.dv-x:focus:not(:focus-visible),.dh-card:focus:not(:focus-visible),.doc-more:focus:not(:focus-visible){outline:none}
 .dv-x:focus-visible,.doc-btn:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+/* Однакова відстань від заголовка до пунктів у всіх картках «Переваги» (не залежить від кількості пунктів) */
+.adv .t{justify-content:flex-start;gap:clamp(24px,4.2vw,60px)}
