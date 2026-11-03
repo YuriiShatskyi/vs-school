@@ -90,3 +90,7 @@ details .doc-body{margin-top:10px}
 /* «PDF» праворуч біля кнопки — однаково в усіх документах */
 .doc-act{display:flex;align-items:center;gap:16px}
 .doc-act small{font-size:.78rem;color:var(--muted);white-space:nowrap}
+
+/* Один список без розділів */
+.docs-wrap.docs-one{display:block;max-width:1100px;margin-inline:auto}
+.docs-one .doc{scroll-margin-top:calc(var(--hdr-h,76px) + 20px)}
