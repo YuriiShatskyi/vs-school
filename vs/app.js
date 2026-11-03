@@ -167,7 +167,7 @@
     // Герой — одразу після завантаження
     // Герой: спершу виступає логотип (CSS-анімація), потім текст
     var introMs = window.VS_INTRO_MS || 0; // текст героя чекає, поки зникне заставка
-    set('.hero .cambridge-lockup', 'fade-up', 0, 700 + introMs);
+    // логотип Cambridge з'являється після логотипу школи — CSS-анімація (style.css, .cambridge-lockup)
     set('.hero h1', 'fade-up', 0, 850 + introMs);
     set('.hero-row', 'fade-up', 0, 1050 + introMs);
     set('.counters-in > div', 'fade-up', 100);

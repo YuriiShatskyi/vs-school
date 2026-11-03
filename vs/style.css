@@ -344,13 +344,28 @@ html.dv-on,html.dv-on body{overflow:hidden}
 
 /* ===================== Герой: логотип Cambridge поруч із логотипом школи ===================== */
 .hero-logo{display:inline-block;vertical-align:bottom}
-.cambridge-lockup{--lh:clamp(150px,19vw,280px);display:inline-flex;flex-direction:column;align-items:flex-start;gap:10px;vertical-align:bottom;margin:0 0 clamp(24px,3vw,40px) clamp(22px,3vw,44px);padding-left:clamp(22px,3vw,44px);border-left:1px solid rgba(255,255,255,.45);color:#fff;text-decoration:none}
+.cambridge-lockup{--lh:clamp(150px,19vw,280px);display:inline-flex;flex-direction:column;align-items:flex-start;gap:10px;vertical-align:bottom;margin:0 0 clamp(24px,3vw,40px) clamp(22px,3vw,44px);padding-left:clamp(22px,3vw,44px);position:relative;color:#fff;text-decoration:none}
 .cambridge-lockup img{height:calc(var(--lh) * .42);width:auto;filter:drop-shadow(0 4px 16px rgba(0,0,0,.35));transition:transform .3s}
 .cambridge-lockup small{display:inline-flex;align-items:center;gap:8px;font:600 .72rem/1 var(--head);letter-spacing:.08em;text-transform:uppercase;padding:9px 14px;border-radius:30px;border:1px solid rgba(255,255,255,.6);transition:background .3s,color .3s}
 .cambridge-lockup:hover small{background:#fff;color:var(--ink)}
 .cambridge-lockup:hover img{transform:translateY(-2px)}
 .cambridge-lockup .arr{width:11px;height:11px}
 @media (max-width:640px){
-  .cambridge-lockup{display:flex;flex-direction:row;align-items:center;justify-content:space-between;max-width:330px;margin:-8px 0 26px;padding:14px 0 0;border-left:0;border-top:1px solid rgba(255,255,255,.45)}
+  .cambridge-lockup{display:flex;flex-direction:row;align-items:center;justify-content:space-between;max-width:330px;margin:-8px 0 26px;padding:14px 0 0}
   .cambridge-lockup img{height:58px}
 }
+
+/* Анімація: спершу логотип школи (1,6 с), потім лінія-розділювач, логотип Cambridge і кнопка */
+.cambridge-lockup::before{content:"";position:absolute;left:0;top:0;bottom:0;width:1px;background:rgba(255,255,255,.45);transform-origin:top;animation:cam-line 0.7s cubic-bezier(.7,0,.2,1) 1.45s both}
+.cambridge-lockup img{animation:cam-wipe 1.1s cubic-bezier(.7,0,.2,1) 1.85s both}
+.cambridge-lockup small{animation:cam-fade .6s ease 2.6s both}
+body.is-loading .cambridge-lockup::before,body.is-loading .cambridge-lockup img,body.is-loading .cambridge-lockup small{animation-play-state:paused}
+@keyframes cam-line{from{transform:scaleY(0)}to{transform:none}}
+@keyframes cam-line-x{from{transform:scaleX(0)}to{transform:none}}
+@keyframes cam-wipe{from{clip-path:inset(0 100% 0 0);transform:translateX(-14px);opacity:.2}to{clip-path:inset(0 0 0 0);transform:none;opacity:1}}
+@keyframes cam-fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.cambridge-lockup::before,.cambridge-lockup img,.cambridge-lockup small{animation:none}}
+
+/* Комп'ютер: плеєр унизу ліворуч не закриває текст героя */
+@media (min-width:781px){.hero .wrap{padding-bottom:max(clamp(52px,6vw,84px),116px)}}
+@media (max-width:640px){.cambridge-lockup::before{bottom:auto;right:0;width:auto;height:1px;transform-origin:left;animation-name:cam-line-x}}
