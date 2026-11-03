@@ -275,7 +275,7 @@ window.SITE = {
   /* ---------- КОМАНДА (адміністрація на головній) ---------- */
   team: [
     { name: "Клімковська Світлана Іванівна", role: "Директор",                                       photo: "images/team/klimkovska.jpg?v=2" },
-    { name: "Кузенко Галина Романівна",      role: "Заступник директора, вчитель початкових класів", photo: "images/team/kuzenko.jpg?v=3" },
+    { name: "Кузенко Галина Романівна",      role: "Заступник директора, вчитель початкових класів", photo: "images/team/kuzenko.jpg?v=4" },
     { name: "Кальна Наталія Михайлівна",     role: "Заступник директора, вчитель початкових класів", photo: "images/team/kalna.jpg?v=2" },
     { name: "Яцента Надія Петрівна",         role: "Заступник директора, вчитель географії",          photo: "images/team/yacenta.jpg?v=2" }
   ],
@@ -287,7 +287,7 @@ window.SITE = {
   staff: [
     { dept: "Адміністрація", people: [
       { name: "Клімковська Світлана Іванівна", role: "Директор", photo: "images/team/klimkovska.jpg?v=2" },
-      { name: "Кузенко Галина Романівна", role: "Заступник директора, вчитель початкових класів", photo: "images/team/kuzenko.jpg?v=3" },
+      { name: "Кузенко Галина Романівна", role: "Заступник директора, вчитель початкових класів", photo: "images/team/kuzenko.jpg?v=4" },
       { name: "Кальна Наталія Михайлівна", role: "Заступник директора, вчитель початкових класів", photo: "images/team/kalna.jpg?v=2" },
       { name: "Яцента Надія Петрівна", role: "Заступник директора, вчитель географії", photo: "images/team/yacenta.jpg?v=2" }
     ] },
@@ -301,7 +301,7 @@ window.SITE = {
       { name: "Єфремова Тетяна Анатоліївна", role: "Вчитель початкових класів", photo: "images/team/iefremova.jpg" },
       { name: "Кальна Наталія Михайлівна", role: "Заступник директора, вчитель початкових класів", photo: "images/team/kalna.jpg?v=2" },
       { name: "Семків Ірина Вікторівна", role: "Вчитель початкових класів", photo: "images/team/semkiv.jpg" },
-      { name: "Кузенко Галина Романівна", role: "Заступник директора, вчитель початкових класів", photo: "images/team/kuzenko.jpg?v=3" },
+      { name: "Кузенко Галина Романівна", role: "Заступник директора, вчитель початкових класів", photo: "images/team/kuzenko.jpg?v=4" },
       { name: "Стецюк Тетяна Михайлівна", role: "Вчитель української мови та літератури", photo: "images/team/stetsiuk.jpg" },
       { name: "Яцента Надія Петрівна", role: "Заступник директора, вчитель географії", photo: "images/team/yacenta.jpg?v=2" },
       { name: "Журавська Лілія Миколаївна", role: "Психолог", photo: "images/team/zhuravska.jpg" },
@@ -319,7 +319,7 @@ window.SITE = {
       { name: "Єфремова Тетяна Анатоліївна", role: "Вчитель початкових класів", photo: "images/team/iefremova.jpg" },
       { name: "Кальна Наталія Михайлівна", role: "Заступник директора, вчитель початкових класів", photo: "images/team/kalna.jpg?v=2" },
       { name: "Семків Ірина Вікторівна", role: "Вчитель початкових класів", photo: "images/team/semkiv.jpg" },
-      { name: "Кузенко Галина Романівна", role: "Заступник директора, вчитель початкових класів", photo: "images/team/kuzenko.jpg?v=3" },
+      { name: "Кузенко Галина Романівна", role: "Заступник директора, вчитель початкових класів", photo: "images/team/kuzenko.jpg?v=4" },
       { name: "Савенкова Оксана Володимирівна", role: "Вчитель початкових класів", photo: "images/team/savenkova-o.jpg" },
       { name: "Савенкова Єлизавета Юріївна", role: "Вчитель початкових класів", photo: "images/team/savenkova-ye.jpg" },
       { name: "Котик Тетяна Іванівна", role: "Вчитель початкових класів", photo: "images/team/kotyk.jpg" }
