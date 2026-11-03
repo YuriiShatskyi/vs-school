@@ -58,6 +58,17 @@
     [0, 1].forEach(function () {
       names.forEach(function (n) { var sp = document.createElement('span'); sp.textContent = n; mq.appendChild(sp); });
     });
+    /* Рядок має рушити одразу, щойно до нього догорнули (деякі браузери, зокрема Safari, «присипляють»
+       анімацію поза екраном і будять її лише від наведення мишки) — перезапускаємо її при появі на екрані */
+    if ('IntersectionObserver' in window) {
+      var wake = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          mq.style.animation = 'none'; void mq.offsetWidth; mq.style.animation = '';
+        });
+      }, { threshold: 0 });
+      wake.observe(mq.parentNode);
+    }
   }
 
   /* ---------- Лічильники ---------- */
