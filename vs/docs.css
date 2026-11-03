@@ -105,3 +105,11 @@ details .doc-body{margin-top:10px}
 .doc-text summary:hover .doc-more{background:var(--ink);color:var(--white)}
 .doc-text details[open] .doc-more{background:var(--ink);color:var(--white)}
 .doc-text details[open] .doc-more::before{font-size:.74rem}
+/* Телефон: усі кнопки («Відкрити», «Дивитися», «Детальніше», «Гуртки») з одного лівого краю, підпис — після кнопки */
+@media (max-width:640px){
+  .doc-act .doc-btn,.doc-vers .doc-btn{order:-1}
+  .doc-act{gap:14px}
+  .doc-vers li{grid-template-columns:auto 1fr}
+  .doc-vers li>.doc-btn{grid-column:1;grid-row:2}
+  .doc-vers li>small{grid-column:2;grid-row:2}
+}
