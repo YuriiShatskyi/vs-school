@@ -334,3 +334,5 @@ footer .wrap{padding-block:64px 32px;display:grid;gap:48px}
 .dv-page small{color:rgba(244,241,234,.6);font-size:.75rem}
 html.dv-on,html.dv-on body{overflow:hidden}
 @media print{.dv{display:none!important}}
+.dv-page img:not(.ok){background:linear-gradient(100deg,#fff 40%,#eceae4 50%,#fff 60%) 0 0/200% 100%;animation:dvload 1.2s linear infinite}
+@keyframes dvload{to{background-position:-200% 0}}

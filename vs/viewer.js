@@ -5,7 +5,23 @@
    Щоб додати документ: покласти сторінки в documents/pages/<назва>/1.webp, 2.webp… і додати посилання як вище. */
 (function () {
   var old = document.getElementById('dv'); if (old) old.remove();
-  var box, list, ttl, last;
+  var box, list, ttl, last, io;
+  function src(doc, i) { return 'documents/pages/' + doc + '/' + i + '.webp'; }
+  function load(img, first) {
+    if (!img || !img.dataset.src) return;
+    if (first) img.fetchPriority = 'high';
+    img.src = img.dataset.src; delete img.dataset.src;
+  }
+  /* Наведення/дотик на кнопку «Відкрити» — заздалегідь вантажимо першу сторінку */
+  var warmed = {};
+  function warm(e) {
+    var a = e.target.closest && e.target.closest('a[data-doc]');
+    if (!a || warmed[a.dataset.doc]) return;
+    warmed[a.dataset.doc] = 1; (new Image()).src = src(a.dataset.doc, 1);
+  }
+  document.addEventListener('pointerover', warm, { passive: true });
+  document.addEventListener('touchstart', warm, { passive: true });
+  document.addEventListener('focusin', warm);
 
   function build() {
     box = document.createElement('div');
@@ -26,18 +42,29 @@
     last = from || null;
     ttl.textContent = title || 'Документ';
     list.innerHTML = '';
+    if (io) io.disconnect();
+    var imgs = [];
     for (var i = 1; i <= pages; i++) {
       var p = document.createElement('div'); p.className = 'dv-page';
       var img = document.createElement('img');
-      img.src = 'documents/pages/' + doc + '/' + i + '.webp';
+      img.dataset.src = src(doc, i);
       img.alt = (title || 'Документ') + ' — сторінка ' + i;
-      img.loading = i <= 2 ? 'eager' : 'lazy'; img.decoding = 'async'; img.draggable = false;
+      img.decoding = 'async'; img.draggable = false;
       img.style.aspectRatio = '210/297';                       // місце під сторінку, поки вона вантажиться
-      img.onload = function () { this.style.aspectRatio = ''; };
-      p.appendChild(img);
+      img.onload = function () { this.style.aspectRatio = ''; this.classList.add('ok'); };
+      p.appendChild(img); imgs.push(img);
       if (pages > 1) { var n = document.createElement('small'); n.textContent = i + ' / ' + pages; p.appendChild(n); }
       list.appendChild(p);
     }
+    /* Спершу — перша сторінка (найшвидше), далі — лише ті, до яких людина догортає */
+    load(imgs[0], true);
+    if (imgs[1]) imgs[0].addEventListener('load', function () { load(imgs[1]); }, { once: true });
+    if ('IntersectionObserver' in window) {
+      io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { load(e.target); io.unobserve(e.target); } });
+      }, { root: list, rootMargin: '0px 0px 120% 0px' });
+      imgs.slice(1).forEach(function (im) { io.observe(im); });
+    } else imgs.forEach(function (im) { load(im); });
     box.hidden = false; list.scrollTop = 0;
     document.documentElement.classList.add('dv-on');
     if (window.VS_LENIS) window.VS_LENIS.stop();
@@ -46,7 +73,7 @@
 
   function close() {
     if (!box || box.hidden) return;
-    box.hidden = true; list.innerHTML = '';
+    box.hidden = true; list.innerHTML = ''; if (io) io.disconnect();
     document.documentElement.classList.remove('dv-on');
     if (window.VS_LENIS) window.VS_LENIS.start();
     if (last) last.focus();
