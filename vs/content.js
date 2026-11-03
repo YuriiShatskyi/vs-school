@@ -49,7 +49,7 @@ window.SITE = {
     { date: "1 квітня 2026", title: "Зустріч із практиком: як створити успішний бізнес", img: "images/news-page/260401biz.webp", link: "https://www.facebook.com/share/p/1BEY7m4aC9/" },
     { date: "1 квітня 2026", title: "Переможці ліцейного конкурсу «Світ навколо»", img: "images/news-page/260401svit.webp", link: "https://www.facebook.com/share/p/1GS1Y5gM1u/" },
     { date: "1 квітня 2026", title: "Підсумковий захід рефреш-студії природничо-математичного циклу", img: "images/news-page/260401refresh.webp", link: "https://www.facebook.com/share/p/1BJEU8j299/" },
-    { date: "31 березня 2026", title: "Оголошуємо набір у 1 клас і PreSchool", img: "images/news-page/260331nabir.webp", link: "https://www.facebook.com/share/p/1Dv8Ph6Q91/" },
+    { date: "31 березня 2026", title: "Оголошуємо набір у 1 клас і «PreSchool»", img: "images/news-page/260331nabir.webp", link: "https://www.facebook.com/share/p/1Dv8Ph6Q91/" },
     { date: "30 березня 2026", title: "Вибухонебезпечні предмети: заняття з фахівцями ДСНС", img: "images/news-page/260330dsns.webp", link: "https://www.facebook.com/share/r/1SEAsbWqoi/" },
     { date: "28 березня 2026", title: "Софія Бурка — 1 місце на «The Move Fest»", img: "images/news-page/260328movefest.webp", link: "https://www.facebook.com/share/v/1Dh2DDecN1/" },
     { date: "28 березня 2026", title: "Наші вчителі успішно пройшли атестацію", img: "images/news-page/260328attest.webp", link: "https://www.facebook.com/share/v/1CECG2ptjo/" },
@@ -93,14 +93,14 @@ window.SITE = {
     { date: "3 вересня 2025", title: "Навчання у новому корпусі ліцею", img: "images/news-page/250903nov.webp", link: "https://www.facebook.com/share/p/1BLR9JziHF/" },
     { date: "1 вересня 2025", title: "Перший дзвоник 2025", img: "images/news-page/250901per.webp", link: "https://www.facebook.com/share/p/1G5pBxMfpH/" },
     { date: "27 серпня 2025", title: "Педрада", img: "images/news-page/250827ped.webp", link: "https://www.facebook.com/share/p/1AnhwtBwbs/" },
-    { date: "13 серпня 2025", title: "VS SCHOOL - де навчання стає трендом, а безпека й розвиток дітей - пріоритетом", img: "images/news-page/250813trend.webp", link: "https://www.facebook.com/share/v/19ykU4eoFu/" },
+    { date: "13 серпня 2025", title: "«VS SCHOOL» - де навчання стає трендом, а безпека й розвиток дітей - пріоритетом", img: "images/news-page/250813trend.webp", link: "https://www.facebook.com/share/v/19ykU4eoFu/" },
     { date: "12 серпня 2025", title: "Ліцей «ВС СКУЛ» - британська школа в серці України", img: "images/news-page/250812cambridge.webp", link: "https://www.facebook.com/share/v/15khcwRCvS/" },
     { date: "30 липня 2025", title: "Підготовка до школи у ліцеї «ВС СКУЛ»", img: "images/news-page/250830clas.webp", link: "https://www.facebook.com/share/p/16hodbgG3L/" },
     { date: "4 липня 2025", title: "«VS SCHOOL» офіційно стала британською школою Cambridge International", img: "images/news-page/250704cambridge.webp", link: "https://www.facebook.com/share/p/1HaTmocXBG/" },
     { date: "30 травня 2025", title: "Запрошуємо у літній табір", img: "images/news-page/250530camp.webp", link: "https://www.facebook.com/share/p/16PK3G8i5u/" },
     { date: "29 травня 2025", title: "Переможниці ІІ Всеукраїнського конкурсу мистецтв «Мистецьке майбутнє України»", img: "images/news-page/250529art.webp", link: "https://www.facebook.com/share/p/1WnjYZ3EjK/" },
     { date: "28 травня 2025", title: "Свято дитинства, мрій і магії: День захисту дітей", img: "images/news-page/250528chi.webp", link: "https://www.facebook.com/share/p/16fGmu7Qid/" },
-    { date: "28 травня 2025", title: "Перший випускний. PreSchool", img: "images/news-page/250528kids.webp", link: "https://www.facebook.com/share/p/1Q3F5woUb1/" },
+    { date: "28 травня 2025", title: "Перший випускний. «PreSchool»", img: "images/news-page/250528kids.webp", link: "https://www.facebook.com/share/p/1Q3F5woUb1/" },
     { date: "28 травня 2025", title: "Переможці Всеукраїнського конкурсу «На крилах зарубіжної літератури» - 2025 від журналу «Зарубіжна література в школах України»", img: "images/news-page/250528lit.webp", link: "https://www.facebook.com/share/p/1LQMiKTgUx/" },
     { date: "26 травня 2025", title: "Свято «Прощання з Буквариком»", img: "images/news-page/250526buk.webp", link: "https://www.facebook.com/share/p/194CWLN8H6/" },
     { date: "23 травня 2025", title: "Відкрите гурткове заняття з англійської мови. Тема: «The Planet of Animals»", img: "images/news-page/250523eng2.webp", link: "https://www.facebook.com/share/p/1ENmfZtKXm/" },
@@ -168,7 +168,7 @@ window.SITE = {
     { date: "14 березня 2025", title: "Захід, присвячений творчості видатної української поетеси Лесі Українки", img: "images/news-page/250314ukr.webp", link: "https://www.facebook.com/share/p/1Lt2bpds3s/" },
     { date: "14 березня 2025", title: "Відкритий обласний турнір з карате шотокан", img: "images/news-page/250314kar.webp", link: "https://www.facebook.com/share/p/16bTQUZh4V/" },
     { date: "12 березня 2025", title: "Рефреш-студія суспільно-гуманітарного циклу. Предмет: Основи християнської етики. Тема: «Як я можу змінити світ уже сьогодні?»", img: "images/news-page/250312ohe.webp", link: "https://www.facebook.com/share/p/16QNTeYMQX/" },
-    { date: "10 березня 2025", title: "Шевченкіана у VS SCHOOL", img: "images/news-page/250310sheva.webp", link: "https://www.facebook.com/share/v/1AqGhSX5m2/" },
+    { date: "10 березня 2025", title: "Шевченкіана у «VS SCHOOL»", img: "images/news-page/250310sheva.webp", link: "https://www.facebook.com/share/v/1AqGhSX5m2/" },
     { date: "24 лютого 2025", title: "Турнір з карате шотокан «Крок до успіху»", img: "images/news-page/250224kar.webp", link: "https://www.facebook.com/share/p/1BrNENiMqh/" },
     { date: "24 лютого 2025", title: "Переможці МАН", img: "images/news-page/250224man.webp", link: "https://www.facebook.com/share/p/16ikasMFw8/" },
     { date: "20 лютого 2025", title: "День пам’яті Героїв Небесної Сотні", img: "images/news-page/250220skysto.webp", link: "https://www.facebook.com/share/v/1A6XXwtuvC/" },
@@ -239,7 +239,7 @@ window.SITE = {
     { name: "Підготовка руки до письма",                groups: ["pre"] },
     { name: "Цифрова каліграфія",                       groups: ["pre"] },
     { name: "Logic and Tech",                           groups: ["prim"] },
-    { name: "Карате шотокан",                           groups: ["prim", "base"] },
+    { name: "Карате (Шотокан)",                         groups: ["prim", "base"] },
     { name: "Театральна студія «Острів світла»",        groups: ["prim"] },
     { name: "Dance Mix (хореографія)",                  groups: ["prim"] },
     { name: "Бадмінтон",                                groups: ["prim"] },
@@ -253,7 +253,6 @@ window.SITE = {
     { name: "SPORTLAND — футбол",                       groups: ["prim", "base"] },
     { name: "Майстерня комп'ютерних ігор",              groups: ["prim"] },
     { name: "Арт-студія",                               groups: ["prim", "base"] },
-    { name: "SkyLab FPV (керування дронами)",           groups: ["prim", "base"] },
     { name: "Швидкочитання",                            groups: ["prim"] },
     { name: "Підготовка до Першого причастя (3 клас)",  groups: ["prim"] },
     { name: "Спортивна хореографія",                    groups: ["prim", "base"] },
@@ -269,7 +268,8 @@ window.SITE = {
     { name: "Українська мова: підготовка до ЗНО",       groups: ["prof"] },
     { name: "Англійська мова: підготовка до ЗНО",       groups: ["prof"] },
     { name: "Математика: підготовка до ЗНО",            groups: ["prof"] },
-    { name: "Історія України",                          groups: ["prof"] }
+    { name: "Історія України",                          groups: ["prof"] },
+    { name: "Хімія / біологія (підготовка до НМТ)",     groups: ["prof"] }
   ],
 
   /* ---------- КОМАНДА (адміністрація на головній) ---------- */
@@ -345,7 +345,7 @@ window.SITE = {
       { name: "Гайда Іванна Василівна", role: "Ментор", photo: "images/team/haida.jpg" },
       { name: "Варунків Аліна Григорівна", role: "Ментор", photo: "images/team/varunkiv.jpg" }
     ] },
-    { dept: "PreSchool", people: [
+    { dept: "«PreSchool»", people: [
       { name: "Бігун Мар'яна Ярославівна", role: "Вихователь", photo: "images/team/bihun.jpg" },
       { name: "Дирів Аліна Романівна", role: "Вихователь", photo: "images/team/dyriv.jpg" },
       { name: "Сова Діана Михайлівна", role: "Вчитель-логопед", photo: "images/team/sova.jpg" }

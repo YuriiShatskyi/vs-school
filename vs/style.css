@@ -320,3 +320,17 @@ footer .wrap{padding-block:64px 32px;display:grid;gap:48px}
 /* Команда тимчасово прихована: лишається лише заголовок (клас team-paused на секції #team) */
 .team-paused #team-list,.team-paused #team-toggle,.team-paused #team-all{display:none!important}
 .team-paused .sec-head{margin-bottom:0}
+
+/* ===================== Перегляд документів (viewer.js) ===================== */
+.dv{position:fixed;inset:0;z-index:300;background:#1c1e21;display:flex;flex-direction:column;-webkit-user-select:none;user-select:none}
+.dv[hidden]{display:none}
+.dv-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px clamp(16px,3vw,32px);color:#f4f1ea;border-bottom:1px solid rgba(244,241,234,.15)}
+.dv-t{font:600 .95rem/1.3 var(--body);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dv-x{flex:none;display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:30px;border:1px solid rgba(244,241,234,.6);background:none;color:#f4f1ea;font:600 .74rem/1 var(--head);letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.dv-x:hover{background:#f4f1ea;color:var(--ink)}
+.dv-list{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:24px 16px 120px;display:flex;flex-direction:column;align-items:center;gap:18px}
+.dv-page{width:min(900px,100%);display:flex;flex-direction:column;align-items:center;gap:6px}
+.dv-page img{display:block;width:100%;height:auto;background:#fff;box-shadow:0 6px 30px rgba(0,0,0,.35);pointer-events:none;-webkit-touch-callout:none}
+.dv-page small{color:rgba(244,241,234,.6);font-size:.75rem}
+html.dv-on,html.dv-on body{overflow:hidden}
+@media print{.dv{display:none!important}}
