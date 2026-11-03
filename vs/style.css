@@ -369,3 +369,13 @@ body.is-loading .cambridge-lockup::before,body.is-loading .cambridge-lockup img,
 /* Комп'ютер: плеєр унизу ліворуч не закриває текст героя */
 @media (min-width:781px){.hero .wrap{padding-bottom:max(clamp(52px,6vw,84px),116px)}}
 @media (max-width:640px){.cambridge-lockup::before{bottom:auto;right:0;width:auto;height:1px;transform-origin:left;animation-name:cam-line-x}}
+/* Комп'ютер: герой завжди вміщується у висоту вікна (логотип і заголовок зменшуються на низьких екранах),
+   тож текст під заголовком видно над плеєром */
+@media (min-width:781px){
+  .hero{min-height:560px;min-height:max(560px,100svh)}
+  .hero .wrap{padding-top:110px}
+  .hero-logo{height:clamp(110px,min(19vw,24vh),280px)}
+  .cambridge-lockup{--lh:clamp(110px,min(19vw,24vh),280px)}
+  .hero h1{font-size:clamp(1.9rem,min(4.4vw,7.4vh),3.8rem)}
+  .hero-row{margin-top:clamp(14px,2.6vh,28px)}
+}
