@@ -98,3 +98,10 @@ details .doc-body{margin-top:10px}
 .docs .doc[hidden],.doc-note[hidden]{display:none}
 /* Головна, блок документів: довгий заголовок не зсуває «Усі документи» вниз — кнопка праворуч */
 @media (min-width:781px){.docs-home .sec-head{flex-wrap:nowrap}.docs-home .sec-head h2{min-width:0}.docs-home .sec-head .link{flex:none}}
+
+/* Усі кнопки в документах одного розміру: «Відкрити», «Детальніше», «Згорнути», «Гуртки», «Дивитися» */
+.doc-btn,.doc-text .doc-more{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:150px;height:40px;padding:0 18px;border-radius:30px;border:1px solid var(--ink);font:600 .74rem/1 var(--head);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.doc-text .doc-more{background:transparent;color:var(--ink);transition:background .25s,color .25s}
+.doc-text summary:hover .doc-more{background:var(--ink);color:var(--white)}
+.doc-text details[open] .doc-more{background:var(--ink);color:var(--white)}
+.doc-text details[open] .doc-more::before{font-size:.74rem}
