@@ -96,3 +96,5 @@ details .doc-body{margin-top:10px}
 .docs-one .doc{scroll-margin-top:calc(var(--hdr-h,76px) + 20px)}
 .docs-filters{margin-bottom:24px}
 .docs .doc[hidden],.doc-note[hidden]{display:none}
+/* Головна, блок документів: довгий заголовок не зсуває «Усі документи» вниз — кнопка праворуч */
+@media (min-width:781px){.docs-home .sec-head{flex-wrap:nowrap}.docs-home .sec-head h2{min-width:0}.docs-home .sec-head .link{flex:none}}
