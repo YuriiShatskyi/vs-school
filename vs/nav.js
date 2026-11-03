@@ -50,7 +50,14 @@
 
   /* Прокрутка до розділу іншої сторінки. Поки вантажаться фото й анімації, сторінка «росте»,
      тому кілька разів перевіряємо, що розділ справді під шапкою, і підправляємо. */
+  /* Після переходу до розділу прибираємо #розділ з адреси: інакше після оновлення сторінки
+     браузер знову кидає в той самий розділ, навіть якщо людина вже повернулась нагору */
+  function dropHash() {
+    if (location.hash) history.replaceState(history.state, '', location.pathname + location.search);
+  }
+
   function settle(el) {
+    dropHash();
     var tries = 0, lenis = window.VS_LENIS;
     (function fix() {
       var top = el.getBoundingClientRect().top - 76;
@@ -148,6 +155,8 @@
     go(location.href, false);
   });
   tracked.pop();   // і повернення «назад» — теж постійне
+  window.addEventListener('hashchange', function () { setTimeout(dropHash, 0); });
+  tracked.pop();
   history.replaceState({ vs: 1 }, '', location.href);
   if (location.hash) window.addEventListener('load', function () {
     var el = document.querySelector(location.hash); if (el) settle(el);
