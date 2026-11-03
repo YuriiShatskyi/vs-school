@@ -302,11 +302,16 @@ window.SITE = {
       { name: "Кальна Наталія Михайлівна", role: "Заступник директора, вчитель початкових класів", photo: "images/team/kalna.jpg" },
       { name: "Семків Ірина Вікторівна", role: "Вчитель початкових класів", photo: "images/team/semkiv.jpg" },
       { name: "Кузенко Галина Романівна", role: "Заступник директора, вчитель початкових класів", photo: "images/team/kuzenko.jpg?v=2" },
-      { name: "Сенюк Надія Михайлівна", role: "Вчитель біології та хімії", photo: "images/team/seniuk.jpg" },
       { name: "Стецюк Тетяна Михайлівна", role: "", photo: "images/team/stetsiuk.jpg" },
       { name: "Яцента Надія Петрівна", role: "Заступник директора, вчитель географії", photo: "images/team/yacenta.jpg" },
       { name: "Журавська Лілія Миколаївна", role: "Психолог", photo: "images/team/zhuravska.jpg" },
-      { name: "Підлеснюк Іванна Василівна", role: "Вчитель англійської мови", photo: "images/team/pidlesniuk.jpg" }
+      { name: "Підлеснюк Іванна Василівна", role: "Вчитель англійської мови", photo: "images/team/pidlesniuk.jpg" },
+      { name: "Івонюк Вікторія Петрівна", role: "Вчитель англійської мови", photo: "images/team/ivoniuk.jpg" },
+      { name: "Кантемир Олена Володимирівна", role: "Вчитель української мови та літератури", photo: "images/team/kantemyr.jpg" },
+      { name: "Савенкова Оксана Володимирівна", role: "Вчитель початкових класів", photo: "images/team/savenkova-o.jpg" },
+      { name: "Савенкова Єлизавета Юріївна", role: "Вчитель початкових класів", photo: "images/team/savenkova-ye.jpg" },
+      { name: "Вилка Оксана Григорівна", role: "Вчитель англійської мови", photo: "images/team/vylka.jpg" },
+      { name: "Котик Тетяна Іванівна", role: "Вчитель початкових класів", photo: "images/team/kotyk.jpg" }
     ] },
     { dept: "Кафедра вчителів початкових класів", people: [
       { name: "Нич Тетяна Романівна", role: "Вчитель початкових класів", photo: "images/team/nych.jpg" },
