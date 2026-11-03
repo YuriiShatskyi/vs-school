@@ -94,3 +94,5 @@ details .doc-body{margin-top:10px}
 /* Один список без розділів */
 .docs-wrap.docs-one{display:block;max-width:1100px;margin-inline:auto}
 .docs-one .doc{scroll-margin-top:calc(var(--hdr-h,76px) + 20px)}
+.docs-filters{margin-bottom:24px}
+.docs .doc[hidden],.doc-note[hidden]{display:none}
