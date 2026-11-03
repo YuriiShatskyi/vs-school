@@ -341,3 +341,16 @@ html.dv-on,html.dv-on body{overflow:hidden}
 .dv-x:focus-visible,.doc-btn:focus-visible{outline:2px solid currentColor;outline-offset:3px}
 /* Однакова відстань від заголовка до пунктів у всіх картках «Переваги» (не залежить від кількості пунктів) */
 .adv .t{justify-content:flex-start;gap:clamp(24px,4.2vw,60px)}
+
+/* ===================== Герой: логотип Cambridge поруч із логотипом школи ===================== */
+.hero-logo{display:inline-block;vertical-align:bottom}
+.cambridge-lockup{--lh:clamp(150px,19vw,280px);display:inline-flex;flex-direction:column;align-items:flex-start;gap:10px;vertical-align:bottom;margin:0 0 clamp(24px,3vw,40px) clamp(22px,3vw,44px);padding-left:clamp(22px,3vw,44px);border-left:1px solid rgba(255,255,255,.45);color:#fff;text-decoration:none}
+.cambridge-lockup img{height:calc(var(--lh) * .42);width:auto;filter:drop-shadow(0 4px 16px rgba(0,0,0,.35));transition:transform .3s}
+.cambridge-lockup small{display:inline-flex;align-items:center;gap:8px;font:600 .72rem/1 var(--head);letter-spacing:.08em;text-transform:uppercase;padding:9px 14px;border-radius:30px;border:1px solid rgba(255,255,255,.6);transition:background .3s,color .3s}
+.cambridge-lockup:hover small{background:#fff;color:var(--ink)}
+.cambridge-lockup:hover img{transform:translateY(-2px)}
+.cambridge-lockup .arr{width:11px;height:11px}
+@media (max-width:640px){
+  .cambridge-lockup{display:flex;flex-direction:row;align-items:center;justify-content:space-between;max-width:330px;margin:-8px 0 26px;padding:14px 0 0;border-left:0;border-top:1px solid rgba(255,255,255,.45)}
+  .cambridge-lockup img{height:58px}
+}
