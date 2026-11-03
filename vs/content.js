@@ -302,7 +302,7 @@ window.SITE = {
       { name: "Кальна Наталія Михайлівна", role: "Заступник директора, вчитель початкових класів", photo: "images/team/kalna.jpg" },
       { name: "Семків Ірина Вікторівна", role: "Вчитель початкових класів", photo: "images/team/semkiv.jpg" },
       { name: "Кузенко Галина Романівна", role: "Заступник директора, вчитель початкових класів", photo: "images/team/kuzenko.jpg?v=2" },
-      { name: "Стецюк Тетяна Михайлівна", role: "", photo: "images/team/stetsiuk.jpg" },
+      { name: "Стецюк Тетяна Михайлівна", role: "Вчитель української мови та літератури", photo: "images/team/stetsiuk.jpg" },
       { name: "Яцента Надія Петрівна", role: "Заступник директора, вчитель географії", photo: "images/team/yacenta.jpg" },
       { name: "Журавська Лілія Миколаївна", role: "Психолог", photo: "images/team/zhuravska.jpg" },
       { name: "Підлеснюк Іванна Василівна", role: "Вчитель англійської мови", photo: "images/team/pidlesniuk.jpg" },
