@@ -5,7 +5,7 @@
    Щоб додати документ: покласти сторінки в documents/pages/<назва>/1.webp, 2.webp… і додати посилання як вище. */
 (function () {
   var old = document.getElementById('dv'); if (old) old.remove();
-  var box, list, ttl, last, io;
+  var box, list, ttl, last, io, kbd = false;
   function src(doc, i) { return 'documents/pages/' + doc + '/' + i + '.webp'; }
   function load(img, first) {
     if (!img || !img.dataset.src) return;
@@ -37,7 +37,8 @@
     box.addEventListener('dragstart', function (e) { e.preventDefault(); });
   }
 
-  function open(doc, pages, title, from) {
+  function open(doc, pages, title, from, kb) {
+    kbd = !!kb;
     if (!box) build();
     last = from || null;
     ttl.textContent = title || 'Документ';
@@ -68,7 +69,7 @@
     box.hidden = false; list.scrollTop = 0;
     document.documentElement.classList.add('dv-on');
     if (window.VS_LENIS) window.VS_LENIS.stop();
-    box.querySelector('.dv-x').focus();
+    if (kbd) box.querySelector('.dv-x').focus();   // фокус переносимо лише для клавіатури — без синьої рамки після кліку
   }
 
   function close() {
@@ -76,14 +77,14 @@
     box.hidden = true; list.innerHTML = ''; if (io) io.disconnect();
     document.documentElement.classList.remove('dv-on');
     if (window.VS_LENIS) window.VS_LENIS.start();
-    if (last) last.focus();
+    if (last && kbd) last.focus(); else if (document.activeElement) document.activeElement.blur();
   }
 
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[data-doc]');
     if (!a) return;
     e.preventDefault(); e.stopPropagation();
-    open(a.dataset.doc, +a.dataset.pages || 1, a.dataset.title, a);
+    open(a.dataset.doc, +a.dataset.pages || 1, a.dataset.title, a, e.detail === 0);
   }, true);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
 

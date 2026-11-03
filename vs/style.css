@@ -336,3 +336,6 @@ html.dv-on,html.dv-on body{overflow:hidden}
 @media print{.dv{display:none!important}}
 .dv-page img:not(.ok){background:linear-gradient(100deg,#fff 40%,#eceae4 50%,#fff 60%) 0 0/200% 100%;animation:dvload 1.2s linear infinite}
 @keyframes dvload{to{background-position:-200% 0}}
+/* Без синьої рамки після кліку мишкою/пальцем (для клавіатури рамка лишається) */
+.doc-btn:focus:not(:focus-visible),.dv-x:focus:not(:focus-visible),.dh-card:focus:not(:focus-visible),.doc-more:focus:not(:focus-visible){outline:none}
+.dv-x:focus-visible,.doc-btn:focus-visible{outline:2px solid currentColor;outline-offset:3px}
