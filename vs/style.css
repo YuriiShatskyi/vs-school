@@ -388,3 +388,10 @@ body.is-loading .cambridge-lockup::before,body.is-loading .cambridge-lockup img,
 /* Телефон: «Записатися» в меню — праворуч; «Детальніше» Cambridge трохи лівіше від краю */
 .drop .pill{justify-self:end}
 @media (max-width:640px){.cambridge-lockup small{margin-right:14px}}
+/* Телефон: кнопки «Записатися на знайомство», «Записатися», «Усі новини», «Уся команда», «Усі документи»,
+   «Далі», «Подати заявку» — по правому краю */
+@media (max-width:780px){
+  .pre-cta>.pill,.head-row>.pill,.sec-head>.link,#f-next,.f-brand .pill{justify-self:end;align-self:flex-end;margin-left:auto}
+  #f-next{display:inline-flex;width:fit-content}
+  .f-brand .pill{justify-self:end}
+}
