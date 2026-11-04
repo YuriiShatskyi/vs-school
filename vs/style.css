@@ -383,3 +383,5 @@ body.is-loading .cambridge-lockup::before,body.is-loading .cambridge-lockup img,
   .hero-logo,.cambridge-lockup{margin-bottom:14px}
   .hero-row{margin-top:10px}
 }
+/* Телефон: кнопка «Записатися» в герої — праворуч */
+@media (max-width:780px){.hero .hero-row>.pill{margin-left:auto}}
