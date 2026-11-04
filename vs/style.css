@@ -385,3 +385,6 @@ body.is-loading .cambridge-lockup::before,body.is-loading .cambridge-lockup img,
 }
 /* Телефон: кнопка «Записатися» в герої — праворуч */
 @media (max-width:780px){.hero .hero-row>.pill{margin-left:auto}}
+/* Телефон: «Записатися» в меню — праворуч; «Детальніше» Cambridge трохи лівіше від краю */
+.drop .pill{justify-self:end}
+@media (max-width:640px){.cambridge-lockup small{margin-right:14px}}
