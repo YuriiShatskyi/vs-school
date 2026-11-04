@@ -55,7 +55,7 @@
   var hs = document.querySelector('.hscroll');
   var track = hs && hs.querySelector('.hs-track');
   var vp = hs && hs.querySelector('.hs-viewport');
-  var dist = 0;
+  var dist = 0, scale = 1, lastW = 0;
   window.VS_PIN = false;
   function hdrH() { var h = document.getElementById('hdr'); return h ? h.offsetHeight : 0; }
   /* Заголовок блоку: якщо разом з картками не влазить під шапку — він прокручується звичайно,
@@ -75,28 +75,40 @@
     headOut(false);
     if (on && sticky.scrollHeight > sticky.clientHeight + 2) headOut(true);
     window.VS_PIN = on;
-    if (!on) { hs.style.height = ''; track.style.transform = ''; return; }
-    /* якщо картки однаково вищі за вільне місце (маленький телефон) — трохи зменшуємо їх цілком */
-    track.style.zoom = '';
+    if (!on) { hs.style.height = ''; track.style.transform = ''; track.style.marginBottom = ''; return; }
+    /* якщо картки однаково вищі за вільне місце (маленький телефон) — трохи зменшуємо їх цілком.
+       Зменшення — через transform: scale (рахує відеокарта), а не zoom: zoom перебудовує сторінку і гальмує прокрутку */
+    track.style.transform = ''; track.style.marginBottom = '';
     var sp = getComputedStyle(sticky), free = sticky.clientHeight - parseFloat(sp.paddingTop) - parseFloat(sp.paddingBottom) - (head && head.parentNode === sticky ? head.offsetHeight : 0);
-    if (track.offsetHeight > free && free > 200) track.style.zoom = Math.max(0.7, free / track.offsetHeight).toFixed(3);
+    var th = track.offsetHeight;
+    scale = (th > free && free > 200) ? Math.max(0.7, free / th) : 1;
+    if (scale < 1) track.style.marginBottom = (-(1 - scale) * th).toFixed(1) + 'px';
     var cs = getComputedStyle(vp);
     var pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
-    var z = parseFloat(track.style.zoom) || 1;
-    dist = Math.max(0, track.scrollWidth * z + pad - vp.clientWidth);
-    hs.style.height = (headH() + window.innerHeight - hdrH() + dist) + 'px';
+    dist = Math.max(0, track.scrollWidth * scale + pad - vp.clientWidth);
+    /* висота блоку — від висоти «липкої» частини (100svh), а не від innerHeight, яка на телефоні
+       стрибає, коли ховається/з'являється адресний рядок */
+    hs.style.height = (headH() + sticky.offsetHeight + dist) + 'px';
+    lastW = window.innerWidth;
     movePin();
     if (window.VS_LENIS) window.VS_LENIS.resize();
   }
+  var ticking = false;
   function movePin() {
     if (!window.VS_PIN) return;
     var top = hs.getBoundingClientRect().top + headH() - hdrH();
     var p = Math.min(1, Math.max(0, -top / (dist || 1)));
-    track.style.transform = 'translate3d(' + (-p * dist / (parseFloat(track.style.zoom) || 1)).toFixed(1) + 'px,0,0)';
+    track.style.transform = 'translate3d(' + (-p * dist).toFixed(1) + 'px,0,0)' + (scale < 1 ? ' scale(' + scale.toFixed(3) + ')' : '');
+  }
+  function onScroll() {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function () { ticking = false; movePin(); });
   }
   setupPin();
-  window.addEventListener('resize', setupPin);
-  window.addEventListener('scroll', movePin, { passive: true });
+  /* на телефоні resize спрацьовує під час прокрутки (адресний рядок) — перераховуємо лише коли змінилась ширина */
+  window.addEventListener('resize', function () { if (window.innerWidth !== lastW) setupPin(); });
+  window.addEventListener('orientationchange', function () { setTimeout(setupPin, 300); });
+  window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('load', setupPin);
 
   /* ---------- Кроки вступу: номери для стопки ---------- */

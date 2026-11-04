@@ -108,3 +108,4 @@ html.lenis,html.lenis body{height:auto}
 /* Низькі екрани: заголовок «Оберіть рівень навчання» над блоком, «завмирають» лише картки */
 .hscroll.pin-compact>.wrap{padding-top:clamp(64px,8vw,110px)}
 @media (min-width:1000px){.hscroll.pinned.pin-compact .sec-head{margin-bottom:0}}
+.hscroll.pinned .hs-track{transform-origin:0 0;backface-visibility:hidden}
