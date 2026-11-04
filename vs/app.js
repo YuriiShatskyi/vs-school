@@ -108,7 +108,45 @@
     S.circles.filter(function (c) { return f === 'all' || (c.groups || [c.group]).indexOf(f) > -1; }).forEach(function (c) {
       var s = el('span', 'chip', c.name); chips.appendChild(s);
     });
+    packChips();
   }
+
+  /* Порядок гуртків підбирається під ширину екрана так, щоб у рядках лишалось якнайменше порожнього місця
+     (найдовші назви розставляються першими, коротші заповнюють залишки рядків). Перераховується при зміні ширини. */
+  var packedW = 0;
+  function packChips() {
+    if (!chips) return;
+    var items = Array.prototype.slice.call(chips.children);
+    var W = chips.clientWidth; if (!W || !items.length) return;
+    var gap = parseFloat(getComputedStyle(chips).columnGap) || 10;
+    var list = items.map(function (e, i) { return { e: e, w: e.getBoundingClientRect().width, i: i }; })
+      .sort(function (a, b) { return b.w - a.w; });
+    var rows = [];
+    list.forEach(function (it) {
+      var best = null;
+      rows.forEach(function (r) {
+        var free = W - r.used - (r.items.length ? gap : 0) - it.w;
+        if (free >= -0.5 && (!best || free < best.free)) best = { r: r, free: free };
+      });
+      if (best) { best.r.used += gap + it.w; best.r.items.push(it); }
+      else rows.push({ used: it.w, items: [it] });
+    });
+    // найменш заповнений рядок — в кінець
+    var last = rows.reduce(function (m, r, k) { return r.used < rows[m].used ? k : m; }, 0);
+    rows.push(rows.splice(last, 1)[0]);
+    var frag = document.createDocumentFragment();
+    rows.forEach(function (r) {
+      r.items.sort(function (a, b) { return a.i - b.i; }).forEach(function (it) { frag.appendChild(it.e); });
+    });
+    chips.appendChild(frag);
+    packedW = W;
+  }
+  var packT;
+  window.addEventListener('resize', function () {
+    clearTimeout(packT);
+    packT = setTimeout(function () { if (chips && chips.clientWidth !== packedW) packChips(); }, 150);
+  });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(packChips);
   renderCircles('all');
   var btns = document.querySelectorAll('#circles .filters button');
   btns.forEach(function (b) {
