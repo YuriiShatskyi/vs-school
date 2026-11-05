@@ -7,7 +7,7 @@
   var old = document.getElementById('dv'); if (old) old.remove();
   var box, list, ttl, last, io, kbd = false;
   /* DOCS_V — міняти, коли оновлюються сторінки документів, щоб браузер не показував старі з кешу */
-  var DOCS_V = '202611050717';
+  var DOCS_V = '202611050753';
   function src(doc, i) { return 'documents/pages/' + doc + '/' + i + '.webp?v=' + DOCS_V; }
   function load(img, first) {
     if (!img || !img.dataset.src) return;
