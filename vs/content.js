@@ -325,6 +325,7 @@ window.SITE = {
       { name: "Котик Тетяна Іванівна", role: "Вчитель початкових класів", photo: "images/team/kotyk.jpg" }
     ] },
     { dept: "Кафедра вчителів природничо-математичного циклу", people: [
+      { name: "Клімковська Світлана Іванівна", role: "Директор, вчитель історії та фінансової грамотності", photo: "images/team/klimkovska.jpg?v=2" },
       { name: "Білінкевич Назар Олексійович", role: "Вчитель математики", photo: "images/team/bilinkevych.jpg" },
       { name: "Дмитрієва Наталя Миколаївна", role: "Вчитель математики", photo: "images/team/dmytriieva.jpg" },
       { name: "Шацький Юрій Іванович", role: "Вчитель інформатики", photo: "images/team/shatskyi.jpg" },
