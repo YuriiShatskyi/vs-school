@@ -1,7 +1,7 @@
 (function () {
   var old = document.getElementById('dv'); if (old) old.remove();
   var box, list, ttl, last, io, kbd = false;
-  var DOCS_V = '202611051530';
+  var DOCS_V = '202611051436';
   function src(doc, i) { return 'documents/pages/' + doc + '/' + i + '.webp?v=' + DOCS_V; }
   function load(img, first) {
     if (!img || !img.dataset.src) return;
