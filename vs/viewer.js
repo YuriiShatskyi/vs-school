@@ -1,12 +1,6 @@
-/* Перегляд документів без завантаження (viewer.js).
-   Документи показуються як зображення сторінок (documents/pages/<назва>/<N>.webp) у вікні поверх сайту.
-   Кнопки «Завантажити» немає, правий клік і перетягування сторінок вимкнені.
-   Посилання: <a href="documents.html?doc=license" data-doc="license" data-pages="1" data-title="Ліцензія">.
-   Щоб додати документ: покласти сторінки в documents/pages/<назва>/1.webp, 2.webp… і додати посилання як вище. */
 (function () {
   var old = document.getElementById('dv'); if (old) old.remove();
   var box, list, ttl, last, io, kbd = false;
-  /* DOCS_V — міняти, коли оновлюються сторінки документів, щоб браузер не показував старі з кешу */
   var DOCS_V = '202611050755';
   function src(doc, i) { return 'documents/pages/' + doc + '/' + i + '.webp?v=' + DOCS_V; }
   function load(img, first) {
@@ -14,7 +8,6 @@
     if (first) img.fetchPriority = 'high';
     img.src = img.dataset.src; delete img.dataset.src;
   }
-  /* Наведення/дотик на кнопку «Відкрити» — заздалегідь вантажимо першу сторінку */
   var warmed = {};
   function warm(e) {
     var a = e.target.closest && e.target.closest('a[data-doc]');
@@ -53,13 +46,12 @@
       img.dataset.src = src(doc, i);
       img.alt = (title || 'Документ') + ' — сторінка ' + i;
       img.decoding = 'async'; img.draggable = false;
-      img.style.aspectRatio = '210/297';                       // місце під сторінку, поки вона вантажиться
+      img.style.aspectRatio = '210/297';
       img.onload = function () { this.style.aspectRatio = ''; this.classList.add('ok'); };
       p.appendChild(img); imgs.push(img);
       if (pages > 1) { var n = document.createElement('small'); n.textContent = i + ' / ' + pages; p.appendChild(n); }
       list.appendChild(p);
     }
-    /* Спершу — перша сторінка (найшвидше), далі — лише ті, до яких людина догортає */
     load(imgs[0], true);
     if (imgs[1]) imgs[0].addEventListener('load', function () { load(imgs[1]); }, { once: true });
     if ('IntersectionObserver' in window) {
@@ -71,7 +63,7 @@
     box.hidden = false; list.scrollTop = 0;
     document.documentElement.classList.add('dv-on');
     if (window.VS_LENIS) window.VS_LENIS.stop();
-    if (kbd) box.querySelector('.dv-x').focus();   // фокус переносимо лише для клавіатури — без синьої рамки після кліку
+    if (kbd) box.querySelector('.dv-x').focus();
   }
 
   function close() {
@@ -90,7 +82,6 @@
   }, true);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
 
-  /* documents.html?doc=license — одразу відкрити потрібний документ (так ведуть картки з головної) */
   var q = location.search.match(/[?&]doc=([\w-]+)/);
   if (q) {
     var a = document.querySelector('a[data-doc="' + q[1] + '"]');

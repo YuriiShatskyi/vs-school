@@ -1,5 +1,3 @@
-/* Сторінка «Документи»: фільтр за розділами (кнопки над списком, як у гуртках).
-   Розділ пункту задається атрибутом data-s у documents.html. */
 (function () {
   var box = document.querySelector('.docs-filters');
   if (!box) return;
@@ -18,6 +16,5 @@
   }
   btns.forEach(function (b) { b.addEventListener('click', function () { apply(b.dataset.s); }); });
 
-  /* Посилання на конкретний пункт (#doc-13) — показати всі, щоб пункт був видимий */
   apply('all');
 })();

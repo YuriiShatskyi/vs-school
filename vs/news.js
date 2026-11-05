@@ -1,5 +1,3 @@
-/* Сторінка «Усі новини»: картки з vs/content.js, фільтр за роком і кнопка «Показати ще».
-   Самі новини редагуються тільки у vs/content.js. */
 (function () {
   var grid = document.getElementById('news-grid');
   if (!grid) return;
@@ -56,7 +54,6 @@
     showMore();
   }
 
-  // Кнопки років (від новішого до старішого) + «Усі»
   var counts = {};
   all.forEach(function (n) { var y = yearOf(n); if (y) counts[y] = (counts[y] || 0) + 1; });
   [['all', 'Усі', all.length]].concat(Object.keys(counts).sort().reverse().map(function (y) { return [y, y, counts[y]]; }))

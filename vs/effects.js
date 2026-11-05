@@ -1,12 +1,9 @@
-/* VS School — ефекти (effects.js): заставка, паралакс, лічильники, бігучий рядок, слайдер новин, плаваючі кнопки.
-   Підключається після content.js і перед app.js. */
 (function () {
   var S = window.SITE || { news: [], circles: [] };
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var body = document.body;
 
-  /* ---------- Заставка з логотипом: при кожному відкритті сторінки, ~1.5 с ----------
-     (без «раз за сеанс»: на одному домені варіанти ділили б цю позначку й заставка зникала) */
+  /* ---------- Заставка з логотипом ---------- */
   var intro = document.getElementById('intro');
   if (!intro || reduce) {
     window.VS_INTRO_MS = 0;
@@ -21,7 +18,7 @@
     }, 1400);
   }
 
-  /* ---------- Слайдер новин (8 найновіших з content.js; усі — на news.html) ---------- */
+  /* ---------- Слайдер новин ---------- */
   var slides = document.getElementById('news-slides');
   if (slides) {
     S.news.slice(0, 8).forEach(function (n) {
@@ -58,8 +55,6 @@
     [0, 1].forEach(function () {
       names.forEach(function (n) { var sp = document.createElement('span'); sp.textContent = n; mq.appendChild(sp); });
     });
-    /* Рядок має рушити одразу, щойно до нього догорнули (деякі браузери, зокрема Safari, «присипляють»
-       анімацію поза екраном і будять її лише від наведення мишки) — перезапускаємо її при появі на екрані */
     if ('IntersectionObserver' in window) {
       var wake = new IntersectionObserver(function (es) {
         es.forEach(function (e) {
@@ -72,7 +67,6 @@
   }
 
   /* ---------- Лічильники ---------- */
-  /* Кількість гуртків — з vs/content.js (з правильним відмінком: 21 гурток, 42 гуртки, 27 гуртків) */
   (function () {
     var n = (S.circles || []).length; if (!n) return;
     var a = n % 10, b = n % 100;

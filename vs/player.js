@@ -1,20 +1,9 @@
-/* VS School — фоновий аудіоплеєр «Співає VS School».
-   Треки й стартова гучність — у vs/content.js (music, musicVolume).
-
-   • При кожному відкритті сайту починає з гімну (перша пісня у списку), далі — вперемішку.
-   • Між сторінками сайту музика не переривається (переходи без перезавантаження — vs/nav.js).
-   • Старт — плавне наростання (FADE_IN), між піснями — плавний перехід без пауз (CROSSFADE):
-     дві «деки» audio, поки одна затихає, інша вже звучить.
-   • Режими: «підряд» (по списку по колу) і «вперемішку» (кожна пісня по разу, потім нове коло).
-   • Автозапуск: браузери забороняють сайтам вмикати звук без дії користувача, тому плеєр
-     пробує заграти одразу, а якщо не дозволили — стартує від першого дотику / кліку / клавіші.
-   • Гучність через Web Audio (GainNode), бо iPhone ігнорує audio.volume. */
 (function () {
-  var FADE_IN = 4;       // с — наростання при першому запуску
-  var RESUME_IN = 1.2;   // с — наростання після паузи
-  var CROSSFADE = 5;     // с — перехід між піснями наприкінці треку
-  var SWITCH = 1.5;      // с — перехід, коли пісню перемкнули вручну
-  var PAUSE_OUT = 0.4;   // с — затухання перед паузою
+  var FADE_IN = 4;
+  var RESUME_IN = 1.2;
+  var CROSSFADE = 5;
+  var SWITCH = 1.5;
+  var PAUSE_OUT = 0.4;
 
   var S = window.SITE || {};
   var list = (S.music || []).filter(function (t) { return t && t.src; });
@@ -33,8 +22,8 @@
   };
 
   var level = typeof S.musicVolume === 'number' ? S.musicVolume : 0.2;
-  var userPaused = store.get('paused') === '1';   // людина сама вимкнула — не вмикаємо наступного разу
-  var shuffle = store.get('mode') !== 'order';   // за замовчуванням — вперемішку
+  var userPaused = store.get('paused') === '1';
+  var shuffle = store.get('mode') !== 'order';
   var idx = 0, playing = false, started = false, xfading = false;
   var history = [], queue = [];
   var ctx = null, master = null;
@@ -48,7 +37,6 @@
   if (store.get('mini') === '1') setMini(true);
 
   /* ---------- Гучність і плавні переходи ---------- */
-  // Рівнопотужна крива: на середині переходу обидві пісні звучать без провалу гучності
   function out(f) { return Math.sin(Math.max(0, Math.min(1, f)) * Math.PI / 2); }
   function apply(d) {
     var v = out(d.fade);
@@ -57,7 +45,7 @@
   }
   function fadeTo(d, to, sec, done) {
     d.anim = { from: d.fade, to: to, t0: Date.now(), ms: Math.max(1, sec * 1000), done: done };
-    if (d.g) {   // перехід розписуємо наперед у Web Audio — він дограє, навіть коли телефон заблоковано
+    if (d.g) {
       try {
         var n = 32, curve = new Float32Array(n), t = ctx.currentTime;
         for (var i = 0; i < n; i++) curve[i] = out(d.fade + (to - d.fade) * i / (n - 1));
@@ -82,13 +70,10 @@
     if (!busy && timer) { clearInterval(timer); timer = null; }
   }
 
-  /* Web Audio вмикаємо лише після дії користувача (інакше AudioContext «спить»).
-     Тут же «розблоковуємо» другу деку — iPhone дозволяє грати лише тим audio,
-     які хоч раз запускалися від дотику. */
   try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
   function unlock() {
     var AC = window.AudioContext || window.webkitAudioContext;
-    if (!ctx && AC && location.protocol !== 'file:') {   // з диска Web Audio віддає тишу
+    if (!ctx && AC && location.protocol !== 'file:') {
       try {
         ctx = new AC();
         master = ctx.createGain(); master.gain.value = level; master.connect(ctx.destination);
@@ -180,7 +165,6 @@
     });
     setMeta();
   }
-  /* Екран блокування / центр керування: назва пісні й логотип ліцею */
   var ART = [96, 128, 192, 256, 384, 512].map(function (n) {
     return { src: new URL('images/logo/artwork-' + n + '.png', document.baseURI).href, sizes: n + 'x' + n, type: 'image/png' };
   });
@@ -218,7 +202,6 @@
     paintPlaying(false); xfading = false;
     decks.forEach(function (d) { if (!d.el.paused) fadeTo(d, 0, PAUSE_OUT, function () { if (!playing) d.el.pause(); }); });
   }
-  /* Перехід на пісню i: нова дека наростає, стара затихає за sec секунд */
   function switchTo(i, sec, fromUser, remember) {
     if (fromUser) { userPaused = false; store.set('paused', '0'); unlock(); }
     if (remember !== false) { history.push(idx); if (history.length > 50) history.shift(); }
@@ -235,12 +218,10 @@
     else go();
   }
 
-  /* Різні браузери вважають «дією користувача» різні події (миша — pointerdown,
-     дотик — touchend/click), тому слухаємо всі й пробуємо щоразу, доки не заграє. */
   var GESTURES = ['pointerdown', 'pointerup', 'touchend', 'click', 'keydown'];
   var armed = false;
   function onGesture(e) {
-    if (box.contains(e.target) || userPaused || playing) return;   // клік по плеєру обробляє сам плеєр
+    if (box.contains(e.target) || userPaused || playing) return;
     unlock(); resume(false);
   }
   function disarm() {
@@ -264,10 +245,9 @@
       fill.style.width = (k * 100).toFixed(2) + '%';
       bar.setAttribute('aria-valuenow', String(Math.round(k * 100)));
       if (time) time.textContent = fmt(t) + (dur ? ' / ' + fmt(dur) : '');
-      // наприкінці пісні — плавний перехід на наступну
       if (playing && !xfading && dur > CROSSFADE * 2 && dur - t <= CROSSFADE) switchTo(nextIndex(), Math.max(1, dur - t), false);
     });
-    d.el.addEventListener('ended', function () {   // запасний шлях, якщо перехід не встиг стартувати
+    d.el.addEventListener('ended', function () {
       if (d === active() && playing && !xfading) switchTo(nextIndex(), 0.5, false);
     });
     d.el.addEventListener('error', function () {
@@ -307,7 +287,6 @@
     var on = !box.classList.contains('mini'); setMini(on); store.set('mini', on ? '1' : '0');
   });
 
-  /* Кнопки на заблокованому екрані / в шторці телефона */
   if ('mediaSession' in navigator) {
     try {
       navigator.mediaSession.setActionHandler('play', function () { resume(true); });
@@ -319,21 +298,18 @@
     } catch (e) {}
   }
 
-  /* Телефон заблокували або вкладку сховали — музика грає далі.
-     Якщо система «приспала» звук (дзвінок, інший плеєр), при поверненні відновлюємо. */
   document.addEventListener('visibilitychange', function () {
     if (!document.hidden && playing && ctx && ctx.state !== 'running') ctx.resume();
-    if (document.hidden && playing) setMeta();   // перед блокуванням ще раз віддаємо логотип і назву
+    if (document.hidden && playing) setMeta();
   });
 
-  /* Над нижньою мобільною панеллю «Подзвонити / Записатися» — піднімаємось */
   var mcta = document.getElementById('mcta');
   if (mcta && 'MutationObserver' in window) {
     new MutationObserver(function () { box.classList.toggle('lifted', mcta.classList.contains('show')); })
       .observe(mcta, { attributes: true, attributeFilter: ['class'] });
   }
 
-  /* ---------- Старт: при кожному відкритті сайту спершу гімн (перша пісня у списку), далі — вперемішку ---------- */
+  /* ---------- Старт ---------- */
   idx = 0;
   list.forEach(function (t, i) { if (t.first) idx = i; });
   el0.src = list[idx].src;

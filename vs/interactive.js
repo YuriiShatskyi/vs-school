@@ -1,9 +1,7 @@
-/* VS School — інтерактив (interactive.js): плавна прокрутка, заголовки по словах, галерея, покрокова форма.
-   Підключається після effects.js і перед app.js. */
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  /* ---------- Плавна прокрутка (сама прокрутка створюється один раз у nav.js) ---------- */
+  /* ---------- Плавна прокрутка ---------- */
   var lenis = window.VS_LENIS || null;
   if (lenis) {
     if (document.body.classList.contains('is-loading')) {
@@ -51,15 +49,13 @@
     } else heads.forEach(function (h) { h.classList.add('split-in'); });
   }
 
-  /* ---------- Рівні навчання: горизонтальна прокрутка ---------- */
+  /* ---------- Рівні навчання ---------- */
   var hs = document.querySelector('.hscroll');
   var track = hs && hs.querySelector('.hs-track');
   var vp = hs && hs.querySelector('.hs-viewport');
   var dist = 0, scale = 1, lastW = 0;
   window.VS_PIN = false;
   function hdrH() { var h = document.getElementById('hdr'); return h ? h.offsetHeight : 0; }
-  /* Заголовок блоку: якщо разом з картками не влазить під шапку — він прокручується звичайно,
-     а «завмирають» лише картки */
   var sticky = hs && hs.querySelector('.hs-sticky');
   var head = sticky && sticky.querySelector('.wrap');
   function headOut(out) {
@@ -76,8 +72,6 @@
     if (on && sticky.scrollHeight > sticky.clientHeight + 2) headOut(true);
     window.VS_PIN = on;
     if (!on) { hs.style.height = ''; track.style.transform = ''; track.style.marginBottom = ''; return; }
-    /* якщо картки однаково вищі за вільне місце (маленький телефон) — трохи зменшуємо їх цілком.
-       Зменшення — через transform: scale (рахує відеокарта), а не zoom: zoom перебудовує сторінку і гальмує прокрутку */
     track.style.transform = ''; track.style.marginBottom = '';
     var sp = getComputedStyle(sticky), free = sticky.clientHeight - parseFloat(sp.paddingTop) - parseFloat(sp.paddingBottom) - (head && head.parentNode === sticky ? head.offsetHeight : 0);
     var th = track.offsetHeight;
@@ -86,8 +80,6 @@
     var cs = getComputedStyle(vp);
     var pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
     dist = Math.max(0, track.scrollWidth * scale + pad - vp.clientWidth);
-    /* висота блоку — від висоти «липкої» частини (100svh), а не від innerHeight, яка на телефоні
-       стрибає, коли ховається/з'являється адресний рядок */
     hs.style.height = (headH() + sticky.offsetHeight + dist) + 'px';
     lastW = window.innerWidth;
     movePin();
@@ -105,13 +97,12 @@
     requestAnimationFrame(function () { ticking = false; movePin(); });
   }
   setupPin();
-  /* на телефоні resize спрацьовує під час прокрутки (адресний рядок) — перераховуємо лише коли змінилась ширина */
   window.addEventListener('resize', function () { if (window.innerWidth !== lastW) setupPin(); });
   window.addEventListener('orientationchange', function () { setTimeout(setupPin, 300); });
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('load', setupPin);
 
-  /* ---------- Кроки вступу: номери для стопки ---------- */
+  /* ---------- Кроки вступу ---------- */
   document.querySelectorAll('.step').forEach(function (s, i) { s.style.setProperty('--i', i); });
 
   /* ---------- Фотогалерея з переглядом ---------- */
@@ -176,7 +167,7 @@
     });
   }
 
-  /* ---------- «Магнітні» кнопки (лише миша) ---------- */
+  /* ---------- «Магнітні» кнопки ---------- */
   if (fine && !reduce) {
     document.querySelectorAll('.pill').forEach(function (p) {
       p.addEventListener('mousemove', function (e) {

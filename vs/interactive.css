@@ -1,26 +1,17 @@
-/* VS School — інтерактив (interactive.css): доповнення до style.css і effects.css.
-   Плавна прокрутка, розкриття заголовків, горизонтальна прокрутка рівнів, стопка кроків вступу,
-   фотогалерея з переглядом, покрокова форма, «магнітні» кнопки. */
-
-/* Плавна прокрутка (Lenis) */
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 .lenis.lenis-stopped{overflow:hidden}
 
-/* Логотип на титулці проявляється «шторкою» знизу вгору */
 .hero-logo{animation:logo-wipe 1.4s cubic-bezier(.7,0,.2,1) .2s both}
 @keyframes logo-wipe{from{clip-path:inset(100% 0 0 0);transform:translateY(30px)}to{clip-path:inset(0 0 0 0);transform:none}}
-/* Фото титулки повільно «дихає» */
 .hero>img{animation:hero-scale 2.6s cubic-bezier(.2,.7,.2,1) both,hero-breathe 18s ease-in-out 2.6s infinite alternate}
 @keyframes hero-breathe{from{scale:1}to{scale:1.06}}
 
-/* Заголовки розкриваються по словах */
 .sw{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em}
 .sw>i{display:inline-block;font-style:normal;transform:translateY(105%);transition:transform .9s cubic-bezier(.2,.7,.2,1)}
 .split-in .sw>i{transform:none}
 .grad .sw>i{background:var(--text-grad);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:var(--gw,100%) 100%;background-position:var(--gx,0) 0}
 
-/* Рівні навчання: горизонтальна прокрутка, прикріплена до екрана */
 .hscroll{padding-block:0}
 .hs-sticky{padding-block:clamp(64px,8vw,110px)}
 .hs-viewport{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-inline:max(20px,env(safe-area-inset-left,0px)) max(20px,env(safe-area-inset-right,0px));scrollbar-width:none}
@@ -33,14 +24,12 @@ html.lenis,html.lenis body{height:auto}
 .hs-track .fmt-intro h3{font-size:clamp(1.6rem,2.8vw,2.4rem)}
 .fmt-intro p{color:rgba(244,241,234,.75);font-size:1rem;max-width:34ch}
 .hs-track .fmt h3{font-size:clamp(1.5rem,2.6vw,2.3rem)}
-/* «Завмирання» працює і на телефоні, і на комп'ютері */
 .hscroll.pinned .hs-sticky{position:sticky;top:var(--hdr-h,76px);height:calc(100vh - var(--hdr-h,76px));height:calc(100svh - var(--hdr-h,76px));display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding-block:clamp(24px,5vh,64px)}
 .hscroll.pinned .sec-head{margin-bottom:clamp(20px,3.5vh,44px)}
 .hscroll.pinned .hs-track .fmt{min-height:min(460px,calc(100vh - var(--hdr-h,76px) - 330px))}
 .hscroll.pinned .hs-viewport{overflow:visible;scroll-snap-type:none;padding-inline:max(20px,calc((100vw - 1320px) / 2 + 20px))}
 .hscroll.pinned .hs-track{will-change:transform}
 @media (max-width:999px){
-  /* телефон: під картками — нижня панель «Подзвонити / Записатися», картки трохи вище й компактніші */
   .hscroll.pinned .hs-sticky{padding-block:16px 92px;justify-content:center}
   .hscroll.pinned .hs-track .fmt{min-height:0;width:min(84vw,420px)}
   .hscroll.pinned .hs-track .fmt-intro{width:min(84vw,420px)}
@@ -51,7 +40,6 @@ html.lenis,html.lenis body{height:auto}
 }
 }
 
-/* Вступ: картки складаються в стопку під час прокрутки */
 @media (min-width:900px){
   .steps{display:flex;flex-direction:column;gap:24px}
   .step{position:sticky;top:calc(110px + var(--i,0) * 26px);min-height:240px;grid-template-columns:200px 1fr;align-items:start;column-gap:40px;box-shadow:0 -10px 30px rgba(35,38,42,.06)}
@@ -60,7 +48,6 @@ html.lenis,html.lenis body{height:auto}
   .step p{font-size:1.05rem;max-width:52ch}
 }
 
-/* Фотогалерея-мозаїка */
 .mosaic{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:clamp(160px,17vw,240px);gap:clamp(10px,1.2vw,16px);grid-auto-flow:dense}
 .m-item{position:relative;padding:0;border:0;background:var(--mint);overflow:hidden;cursor:zoom-in;min-width:0}
 .m-item img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .5s}
@@ -73,7 +60,6 @@ html.lenis,html.lenis body{height:auto}
 @media (max-width:760px){
   .mosaic{grid-template-columns:1fr 1fr}
   .m-tall{grid-row:span 1}
-  /* на телефоні — на всю ширину, лише вхід і їдальня парою */
   .m-item{grid-column:span 2}
   .m-item.m-sm-half{grid-column:span 1}
 }
@@ -85,7 +71,6 @@ html.lenis,html.lenis body{height:auto}
 .lb-next{right:max(18px,env(safe-area-inset-right,0px));top:50%;margin-top:-26px}
 .lb-close:hover,.lb-nav:hover{background:rgba(255,255,255,.25)}
 
-/* Покрокова форма */
 .f-steps{display:flex;gap:18px;font:600 .72rem/1 var(--head);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px}
 .f-steps span{padding-bottom:8px;border-bottom:2px solid var(--line)}
 .f-steps span.on{color:var(--ink);border-color:var(--green)}
@@ -105,7 +90,6 @@ html.lenis,html.lenis body{height:auto}
   .hero-logo{animation:none}
   .step{position:static}
 }
-/* Низькі екрани: заголовок «Оберіть рівень навчання» над блоком, «завмирають» лише картки */
 .hscroll.pin-compact>.wrap{padding-top:clamp(64px,8vw,110px)}
 @media (min-width:1000px){.hscroll.pinned.pin-compact .sec-head{margin-bottom:0}}
 .hscroll.pinned .hs-track{transform-origin:0 0;backface-visibility:hidden}

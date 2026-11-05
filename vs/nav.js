@@ -1,19 +1,10 @@
-/* VS School — переходи між сторінками без перезавантаження (nav.js).
-   Навіщо: щоб музика в плеєрі грала безперервно, коли переходиш на «Новини», «Документи» і назад.
-   Як: посилання на сторінки сайту перехоплюються, нова сторінка підвантажується у фоні,
-   і замінюється все, крім плеєра (та плаваючих кнопок). Скрипти сторінки запускаються знову.
-   Якщо щось піде не так — звичайний перехід за посиланням (сайт працює як раніше).
-   Підключається одразу після player.js і перед effects.js. */
 (function () {
   if (!window.fetch || !window.DOMParser || !history.pushState) return;
 
-  /* Елементи, які лишаються на місці між сторінками */
   var KEEP = ['player', 'mcta', 'toTop', 'progress'];
-  /* Скрипти сторінки — запускаються наново після кожного переходу (решта — бібліотеки, один раз) */
   var PAGE_JS = /vs\/(effects|interactive|news|docs|viewer|app)\.js/;
 
-  /* ---------- Облік обробників подій, які додають скрипти сторінки ----------
-     Перед переходом їх знімаємо, щоб не накопичувались. */
+  /* ---------- Облік обробників подій, які додають скрипти сторінки ---------- */
   var tracked = [], tracking = true;
   [window, document].forEach(function (target) {
     var add = target.addEventListener, rem = target.removeEventListener;
@@ -29,10 +20,10 @@
     tracked = [];
   }
 
-  /* ---------- Плавна прокрутка: одна на весь сеанс ---------- */
+  /* ---------- Плавна прокрутка ---------- */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (window.Lenis && !reduce && !window.VS_LENIS) {
-    tracking = false;                       // обробники самої прокрутки не чіпаємо
+    tracking = false;
     var lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
     (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
     window.VS_LENIS = lenis;
@@ -43,15 +34,11 @@
     if (!a || !a.href || a.target === '_blank' || a.hasAttribute('download')) return false;
     var u = new URL(a.href, location.href);
     if (u.origin !== location.origin) return false;
-    if (!/(\/|\.html)$/.test(u.pathname)) return false;     // лише сторінки, не PDF/фото
-    if (u.pathname === location.pathname && u.hash) return false; // якір на цій же сторінці
+    if (!/(\/|\.html)$/.test(u.pathname)) return false;
+    if (u.pathname === location.pathname && u.hash) return false;
     return true;
   }
 
-  /* Прокрутка до розділу іншої сторінки. Поки вантажаться фото й анімації, сторінка «росте»,
-     тому кілька разів перевіряємо, що розділ справді під шапкою, і підправляємо. */
-  /* Після переходу до розділу прибираємо #розділ з адреси: інакше після оновлення сторінки
-     браузер знову кидає в той самий розділ, навіть якщо людина вже повернулась нагору */
   function dropHash() {
     if (location.hash) history.replaceState(history.state, '', location.pathname + location.search);
   }
@@ -67,7 +54,7 @@
       }
       if (++tries < 12) setTimeout(fix, tries < 4 ? 120 : 300);
     })();
-    var stop = function () { tries = 99; };   // людина сама почала гортати — не заважаємо
+    var stop = function () { tries = 99; };
     ['wheel', 'touchstart', 'keydown'].forEach(function (t) { window.addEventListener(t, stop, { once: true, passive: true }); });
   }
 
@@ -87,14 +74,12 @@
     var desc = doc.querySelector('meta[name="description"]'), cur = document.querySelector('meta[name="description"]');
     if (desc && cur) cur.content = desc.content;
 
-    /* Стилі, яких ще немає */
     doc.querySelectorAll('link[rel="stylesheet"]').forEach(function (l) {
       var href = l.getAttribute('href').split('?')[0];
       var has = Array.prototype.some.call(document.querySelectorAll('link[rel="stylesheet"]'), function (x) { return x.getAttribute('href').split('?')[0] === href; });
       if (!has) document.head.appendChild(l.cloneNode());
     });
 
-    /* Вміст сторінки: усе, крім плеєра і плаваючих кнопок */
     dropListeners();
     var body = document.body;
     Array.prototype.slice.call(body.children).forEach(function (n) {
@@ -103,7 +88,7 @@
     var first = body.firstChild, scripts = [];
     Array.prototype.slice.call(doc.body.children).forEach(function (n) {
       if (n.tagName === 'SCRIPT') { scripts.push(n); return; }
-      if (KEEP.indexOf(n.id) !== -1 || n.id === 'intro') return;  // заставку при переходах не показуємо
+      if (KEEP.indexOf(n.id) !== -1 || n.id === 'intro') return;
       body.insertBefore(document.importNode(n, true), first);
     });
     body.className = doc.body.className.replace('is-loading', '').trim();
@@ -113,7 +98,6 @@
     var hash = new URL(url, location.href).hash;
     if (lenis) lenis.scrollTo(0, { immediate: true }); else window.scrollTo(0, 0);
 
-    /* Скрипти: бібліотеки — якщо ще не завантажені, скрипти сторінки — наново, по черзі */
     tracking = true;
     var queue = scripts.filter(function (s) {
       var src = s.getAttribute('src') || '';
@@ -126,7 +110,7 @@
       if (!s) {
         tracking = false;
         if (window.AOS && AOS.refreshHard) AOS.refreshHard();
-        if (lenis) lenis.resize();   // нова сторінка іншої висоти — прокрутка має про це знати
+        if (lenis) lenis.resize();
         if (hash) {
           var el = document.querySelector(hash);
           if (el) settle(el);
@@ -148,13 +132,13 @@
     var menu = document.querySelector('details.menu[open]'); if (menu) menu.open = false;
     go(a.href, true);
   });
-  tracked.pop();   // обробник кліків навігації — постійний
+  tracked.pop();
 
   window.addEventListener('popstate', function () {
-    if (location.pathname === shown) return;   // лише якір на тій самій сторінці
+    if (location.pathname === shown) return;
     go(location.href, false);
   });
-  tracked.pop();   // і повернення «назад» — теж постійне
+  tracked.pop();
   window.addEventListener('hashchange', function () { setTimeout(dropHash, 0); });
   tracked.pop();
   history.replaceState({ vs: 1 }, '', location.href);
