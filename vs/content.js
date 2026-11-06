@@ -335,7 +335,7 @@ window.SITE = {
       { name: "Андрейчук Вікторія Богданівна", role: "Ментор", photo: "images/team/andreichuk-v.jpg" }
     ] },
     { dept: "«PreSchool»", people: [
-      { name: "Бігун Мар'яна Ярославівна", role: "Вихователь", photo: "images/team/bihun.jpg" },
+      { name: "Бігун Мар'яна Ярославівна", role: "Вчитель 0 класу («PreSchool»)", photo: "images/team/bihun.jpg" },
       { name: "Сова Діана Михайлівна", role: "Вчитель-логопед", photo: "images/team/sova.jpg" }
     ] },
     { dept: "Кухня", people: [
