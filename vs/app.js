@@ -225,6 +225,7 @@
   var msg = document.getElementById('f-msg');
   var btn = document.getElementById('f-btn');
   if (form) {
+    var formOpened = Date.now();
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var name = document.getElementById('f-name').value.trim();
@@ -236,10 +237,14 @@
       }
       btn.disabled = true;
       msg.textContent = 'Надсилаємо…';
-      fetch(form.action, { method: 'POST', body: new FormData(form) })
+      var fd = new FormData(form);
+      fd.append('elapsed', String(Date.now() - formOpened));
+      fetch(form.action, { method: 'POST', body: fd })
         .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
         .then(function (res) {
-          if (res.ok) {
+          if (res.ok === 'slow') {
+            msg.textContent = 'Заявку вже надіслано. Якщо потрібно ще раз — спробуйте за кілька хвилин або зателефонуйте: +380 63 502-33-24.';
+          } else if (res.ok) {
             form.reset();
             msg.textContent = 'Дякуємо! Заявку отримано. Менеджер зателефонує протягом робочого дня.';
           } else {
